@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+        <style></style>
+        <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=pgzg4o5i13"></script>
+    </head>
+    <body>
+        <div class="container-fluid  text-bg-warning">
+            <h1 class="text-center px-2">Header</h1>
+            <div class="text-end">
+                <a href="/signnup.html" target="_blank">Log in/Sign up</a>
+                <select>
+                    <option value="en">English</option>
+                    <option value="kr">Korean</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid ">
+                <div class="narbar-header">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" aria-label="Toggle navigation" data-target="#navbarcontent" aria-controls="navbarContent" aria-expanded="false">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarcontent"> 
+                    <ul class="navbar-nav me-auto mb-2">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home1 <span class="visually-hidden-focusable">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home2</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home3</a>
+                        </li>
+                    </ul>
+                    <form >
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                        <input type="search" placeholder="Search" >
+                    </form>
+                </div>   
+            </div>
+        </nav>
+
+        <div>
+            <h5>Description</h5>
+            <img src="Download.jpeg" class=" mb-5 mx-auto d-block" width=80% height="1000">
+            
+        </div>
+        <div class="container rounded mb-5 px-3 text-bg-light" style="width:80%">
+            <h3>Review</h3>
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <div><img src="Download.jpeg" height="300"></div>
+                        <div>
+                            <h5>Username</h5>
+                            <p>rating</p>
+                            <div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <div><img src="Download.jpeg" width="30" height="30"></div>
+                                    </div>
+                                    <div class="col-5"><p>review</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <div><img src="Download.jpeg" height="300"></div>
+                        <div>
+                            <h5>Username</h5>
+                            <p>rating</p>
+                            <div>
+                                <div class="row">
+                                    <div class="col-1">
+                                        <div><img src="Download.jpeg" width="30" height="30"></div>
+                                    </div>
+                                    <div class="col-5"><p>review</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" container rounded mb-5 px-3 bg-warning" style="width:80%;height:400px">
+            Top Attractive Destination
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="map" class="container mb-3" style="height:400px;"></div>
+        <script>
+            var mapOptions = {
+                center: new naver.maps.LatLng(37.3595704, 127.105399),
+                zoom: 10};
+            var map = new naver.maps.Map('map', mapOptions);
+        </script>
+        
+        <div class=" container text-end text-bg-secondary" style="height:100px">Contact Us</div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+        crossorigin="anonymous"></script>
+    </body>
+</html>
