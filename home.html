@@ -34,41 +34,45 @@
                 <div class="collapse navbar-collapse" id="navbarcontent"> 
                     <ul class="navbar-nav me-auto mb-2">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home1 <span class="visually-hidden-focusable">(current)</span></a>
+                            <a class="nav-link" href="#part1">Home1 <span class="visually-hidden-focusable">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home2</a>
+                            <a class="nav-link" href="#part2">Review</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home3</a>
+                            <a class="nav-link" href="#part3">Destination</a>
+                        </li>
+                        <li class="nav-item active"></li>
+                            <a class="nav-link" href="#map">Map</a>
                         </li>
                     </ul>
                     <form >
-                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                        <button type="submit" class="btn btn-outline-secondary">
+                            <a href="/search.html" target="_blank" style="text-decoration:none">Search</a></button>
                         <input type="search" placeholder="Search" >
                     </form>
                 </div>   
             </div>
         </nav>
 
-        <div>
+        <div id="part1">
             <h5>Description</h5>
-            <img src="Download.jpeg" class=" mb-5 mx-auto d-block" width=80% height="1000">
+            <img src="Download.png" class=" mb-5 mx-auto d-block" width=80% height="300">
             
         </div>
-        <div class="container rounded mb-5 px-3 text-bg-light" style="width:80%">
+        <div id="part2" class="container rounded mb-5 px-3 text-bg-light" style="width:80%">
             <h3>Review</h3>
             <div class="row">
                 <div class="col-6">
                     <div>
-                        <div><img src="Download.jpeg" height="300"></div>
+                        <div><img src="Download.png" height="300"></div>
                         <div>
                             <h5>Username</h5>
                             <p>rating</p>
                             <div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <div><img src="Download.jpeg" width="30" height="30"></div>
+                                        <div><img src="Download.png" width="30" height="30"></div>
                                     </div>
                                     <div class="col-5"><p>review</p></div>
                                 </div>
@@ -79,14 +83,15 @@
                 </div>
                 <div class="col-6">
                     <div>
-                        <div><img src="Download.jpeg" height="300"></div>
+                        <div><img src="Download.png" height="300"></div>
                         <div>
                             <h5>Username</h5>
                             <p>rating</p>
                             <div>
                                 <div class="row">
                                     <div class="col-1">
-                                        <div><img src="Download.jpeg" width="30" height="30"></div>
+
+                                        <div><img src="Download.png" width="30" height="30"></div>
                                     </div>
                                     <div class="col-5"><p>review</p></div>
                                 </div>
@@ -97,8 +102,73 @@
                 </div>
             </div>
         </div>
-        <div class=" container rounded mb-5 px-3 bg-warning" style="width:80%;height:400px">
-            Top Attractive Destination
+        <div id="part3" class=" container-fluid rounded m-5 p-3 bg-success-subtle" style="width:80%">
+            <h2>Top Attractive Destination</h2>
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <div><img src="Download.png" height="300"></div>
+                        <div>
+                            <h5>Place1</h5>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal1">
+                                Detail
+                            </button>
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="modal1">Destination</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Content
+                                      <img src="Download.png" class="img-fluid">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <div><img src="Download.png" height="300"></div>
+                        <div>
+                            <h5>Place2</h5>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal2">
+                                Detail
+                            </button>
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="modal2">Destination</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      Content
+                                      <img src="Download.png" class="img-fluid">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
             <nav>
                 <ul class="pagination justify-content-center">
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -106,6 +176,7 @@
                 </ul>
             </nav>
         </div>
+        <!--Map-->
         <div id="map" class="container mb-3" style="height:400px;"></div>
         <script>
             var mapOptions = {
