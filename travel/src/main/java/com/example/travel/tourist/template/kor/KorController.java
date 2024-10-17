@@ -13,10 +13,10 @@ public class KorController {
     private final KorTemplate korTemplate;
 
     @GetMapping("landmark")
-    public List<Map<String, Object>> allLandmarkPerPage(
+    public Map<String, Object> allLandmarkPerPage(
             @RequestParam("pageNo") Integer pageNo,
-            @RequestParam("sigunguCode") String sigunguCode,
-            @RequestParam("keyword") String keyword
+            @RequestParam(value = "sigunguCode", required = false) String sigunguCode,
+            @RequestParam(value = "keyword", required = false) String keyword
     ){
         if (keyword!=null && sigunguCode!=null)
             return korTemplate.search(pageNo, 12, sigunguCode, keyword);
@@ -27,16 +27,21 @@ public class KorController {
         return korTemplate.allInfoPerPage(pageNo, 12, null);
     }
     @GetMapping("restaurant")
-    public List<Map<String, Object>> allRestaurantPerPage(@RequestParam("pageNo") Integer pageNo){
+    public Map<String, Object> allRestaurantPerPage(@RequestParam("pageNo") Integer pageNo){
         return korTemplate.allInfoPerPage(pageNo, 39, null);
     }
     @GetMapping("accommodation")
-    public List<Map<String, Object>> allAccommodationPerPage(@RequestParam("pageNo") Integer pageNo){
+    public Map<String, Object> allAccommodationPerPage(@RequestParam("pageNo") Integer pageNo){
         return korTemplate.allInfoPerPage(pageNo, 32, null);
     }
 
     @GetMapping("detail/{contentId}")
     public Map<String, Object> oneTour(@PathVariable("contentId") String contentId){
         return korTemplate.detailInfo(contentId);
+    }
+
+    @GetMapping("city")
+    public List<Map<String, Object>> cities(){
+        return korTemplate.cities();
     }
 }

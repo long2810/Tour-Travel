@@ -16,9 +16,9 @@ public interface MessageRepo extends JpaRepository<Message, Long> {
     List<Message> chatMessages(@Param("user1") UserEntity user1,
                                @Param("user2") UserEntity user2);
     @Query("SELECT COUNT(DISTINCT m.sender) FROM Message m "+
-            "WHERE m.receiver = :user AND m.confirm = false " +
+            "WHERE m.receiver = :user " +
             "GROUP BY m.sender")
     Integer countFriendMes(@Param("user") UserEntity user);
 
-    List<Message> findBySenderAndReceiverAndConfirm(UserEntity sender, UserEntity receiver, boolean confirm);
+    List<Message> findBySenderAndReceiver(UserEntity sender, UserEntity receiver);
 }

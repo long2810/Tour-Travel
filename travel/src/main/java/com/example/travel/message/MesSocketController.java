@@ -1,6 +1,7 @@
 package com.example.travel.message;
 
 import com.example.travel.message.dto.MessageDto;
+import com.example.travel.message.entity.Message;
 import com.example.travel.message.service.MesSocketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -26,7 +27,7 @@ public class MesSocketController {
 
     @MessageMapping("/remove")
     @SendTo("/topic/remove")
-    public MessageDto removeMessage(MessageDto dto) {
-        return mesSocketService.remove(dto);
+    public Long removeMessage(MessageDto dto) {
+        return mesSocketService.delete(dto);
     }
 }

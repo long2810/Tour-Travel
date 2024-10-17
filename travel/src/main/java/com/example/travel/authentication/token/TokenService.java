@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TokenService {
     private final TokenUtils tokenUtils;
     private final UserService userService;
@@ -27,9 +28,10 @@ public class TokenService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
                     "Wrong password!!!");
         }
-
         ResponseDto responseDto = ResponseDto.builder()
-                .token(tokenUtils.generateToken(user)).build();
+                .token(tokenUtils.generateToken(user))
+//                .adminId(user.getId())
+                .build();
         return responseDto;
     }
 

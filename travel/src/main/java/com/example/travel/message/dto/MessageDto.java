@@ -15,8 +15,8 @@ public class MessageDto {
     private String senderName;
     private Long receiverId;
     private String receiverName;
+    private boolean edit;
     private boolean confirm;
-    private boolean remove;
     public static MessageDto dto(Message message){
         MessageDto messageDto = MessageDto.builder()
                 .id(message.getId())
@@ -25,8 +25,8 @@ public class MessageDto {
                 .senderName(message.getSender().getName())
                 .receiverId(message.getReceiver().getId())
                 .receiverName(message.getReceiver().getName())
+                .edit(message.isEdit())
                 .confirm(message.isConfirm())
-                .remove(message.isRemove())
                 .build();
         return messageDto;
     }

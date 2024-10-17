@@ -14,8 +14,8 @@ import lombok.*;
 @Builder
 public class Message extends BaseEntity {
     private String content;
+    private boolean edit;
     private boolean confirm;
-    private boolean remove;
     @ManyToOne
     private UserEntity sender;
     @ManyToOne

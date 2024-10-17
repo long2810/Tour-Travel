@@ -34,14 +34,14 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->{
-                    auth.requestMatchers("/static/**",
+                    auth.requestMatchers("/static/**","/view",
                             "/token/**", "/lu/**", "/gs-guide-websocket").permitAll();
                     auth.requestMatchers(HttpMethod.POST,
                             "/users").permitAll();
+                    auth.requestMatchers("/users", "/messages").hasRole("USER");
 
 //                    auth.anyRequest().hasRole("USER");
                     auth.anyRequest().permitAll();
-
                 })
                 .addFilterBefore(
                         new TokenFilterHandler(

@@ -33,9 +33,7 @@ public class UserService implements UserDetailsService {
                 ()-> new IllegalArgumentException("Username does not exists!!!")
         );
         UserEntity user = userRepo.userWithAuthority(entity.getId()).orElseThrow();
-        userRepo.save(user);
-        UserEntity userEntity = userRepo.userWithAuthority(user.getId()).orElseThrow();
-        return UserDto.dto(userEntity);
+        return UserDto.dto(userRepo.save(user));
     }
 
     public UserDto create(UserDto dto){

@@ -14,7 +14,6 @@ public interface UserRepo extends JpaRepository<UserEntity, Long> {
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
     boolean existsByPhone(String phone);
-
     @Query("SELECT DISTINCT u FROM UserEntity u JOIN FETCH u.authorities WHERE u.id= :id")
     Optional<UserEntity> userWithAuthority(@Param("id") Long id);
 }

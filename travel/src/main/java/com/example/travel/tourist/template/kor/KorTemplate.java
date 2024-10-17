@@ -30,7 +30,7 @@ public class KorTemplate {
     }
 
     private Map<String, Object> itemsMap(String url){
-        Map<String, Object> def = new HashMap<>();
+        Map<String, Object> bodyMap = new HashMap<>();
         try {
             URI uri = new URI(url);
             RestTemplate restTemplate = new RestTemplate();
@@ -40,17 +40,17 @@ public class KorTemplate {
             );
             Map<String, Object> map = new ObjectMapper().readValue(response.toString(), Map.class);
             Map<String, Object> responseMap = (Map<String, Object>) map.get("response");
-            Map<String, Object> bodyMap = (Map<String, Object>) responseMap.get("body");
-            def = (Map<String, Object>) bodyMap.get("items");
+            bodyMap = (Map<String, Object>) responseMap.get("body");
+//            def = (Map<String, Object>) bodyMap.get("items");
         } catch (URISyntaxException | JsonProcessingException e){
             e.getMessage();
         }
-        return def;
+        return bodyMap;
     }
 
     // All tourists locate in Seoul
-    public List<Map<String, Object>> allInfoPerPage(Integer pageNo, Integer contentTypeId, String sigunguCode){
-        List<Map<String, Object>> all = new ArrayList<>();
+    public Map<String, Object> allInfoPerPage(Integer pageNo, Integer contentTypeId, String sigunguCode){
+
         String url = UriComponentsBuilder.fromUriString(root("areaBasedList1"))
                 .queryParam("areaCode", 1)
                 .queryParam("contentTypeId", contentTypeId)
@@ -58,7 +58,7 @@ public class KorTemplate {
                 .queryParam("pageNo", pageNo)
                 .queryParam("sigunguCode",sigunguCode)
                 .encode().build(true).toUriString();
-        return (List<Map<String, Object>>) itemsMap(url).get("item");
+        return itemsMap(url);
     }
 
     // Get information of only one tour based on contentId
@@ -71,11 +71,12 @@ public class KorTemplate {
                 .queryParam("addrinfoYN", "Y")
                 .queryParam("defaultYN", "Y")
                 .encode().build(true).toUriString();
-        return ((List<Map<String, Object>>) itemsMap(url).get("item")).get(0);
+        Map<String, Object> all = (Map<String, Object>) itemsMap(url).get("items");
+        return ((List<Map<String, Object>>) all.get("item")).get(0);
     }
 
-    public List<Map<String, Object>> search(Integer pageNo, Integer contentTypeId, String sigunguCode, String keyword){
-        List<Map<String, Object>> all = new ArrayList<>();
+    public Map<String, Object> search(Integer pageNo, Integer contentTypeId, String sigunguCode, String keyword){
+
         String url = UriComponentsBuilder.fromUriString(root("searchKeyword1"))
                 .queryParam("areaCode", 1)
                 .queryParam("contentTypeId", contentTypeId)
@@ -84,6 +85,14 @@ public class KorTemplate {
                 .queryParam("sigunguCode",sigunguCode)
                 .queryParam("keyword", keyword)
                 .encode().build(true).toUriString();
-        return (List<Map<String, Object>>) itemsMap(url).get("item");
+        return itemsMap(url);
+    }
+
+    public List<Map<String, Object>> cities(){
+        String url = UriComponentsBuilder.fromUriString(root("areaCode1"))
+                .queryParam("numOfRows", 17)
+                .encode().build(true).toUriString();
+        Map<String, Object> itemsMap = (Map<String, Object>) itemsMap(url).get("items");
+        return (List<Map<String, Object>>) itemsMap.get("item");
     }
 }
