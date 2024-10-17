@@ -1,0 +1,19 @@
+.post {
+  margin-top: 100px;
+}
+.post-image {
+  width: 70vw;
+  height: 700px;
+}
+@media (max-width: 900px) {
+  .post-image {
+    width: 60vw;
+    height: 350px;
+  }
+}
+@media (max-width: 650px) {
+  .post-image {
+    width: 50vw;
+    height: 200px;
+  }
+}

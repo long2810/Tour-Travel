@@ -7,7 +7,24 @@
     padding: 0 3rem;
     z-index: 3;
 }
-
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border: solid 1px rgb(107, 96, 96);
+  border-radius: 50%;
+}
+.bar-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.btn-sm {
+  border: none;
+}
+.navbar-collapse {
+  margin: 0 10vw;
+  padding: 0 10vw;
+}
 @media (max-width: 992px) {
     /* .navbar {
       margin-top: 10px;
