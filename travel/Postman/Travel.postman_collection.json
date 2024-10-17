@@ -1,0 +1,1113 @@
+{
+	"info": {
+		"_postman_id": "dfe3777b-6a6d-4a25-bdc3-ab9f7e9a7079",
+		"name": "Travel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37757111"
+	},
+	"item": [
+		{
+			"name": "Directions",
+			"item": [
+				{
+					"name": "/n-cloud",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/n-cloud?sx=126.90181682982&sy=37.52107940032&ex=126.90694185417&ey=37.516117901256&option=traavoidcaronly",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"n-cloud"
+							],
+							"query": [
+								{
+									"key": "sx",
+									"value": "126.90181682982"
+								},
+								{
+									"key": "sy",
+									"value": "37.52107940032"
+								},
+								{
+									"key": "ex",
+									"value": "126.90694185417"
+								},
+								{
+									"key": "ey",
+									"value": "37.516117901256"
+								},
+								{
+									"key": "option",
+									"value": "traavoidcaronly"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/n-search-location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/n-search-location?keyword=서강대학교",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"n-search-location"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "서강대학교"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odsay/directions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/odsay/directions?sx=126.97260&sy=37.55319&ex=126.9769&ey=37.5657",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"odsay",
+								"directions"
+							],
+							"query": [
+								{
+									"key": "sx",
+									"value": "126.97260"
+								},
+								{
+									"key": "sy",
+									"value": "37.55319"
+								},
+								{
+									"key": "ex",
+									"value": "126.9769"
+								},
+								{
+									"key": "ey",
+									"value": "37.5657"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odsay/loadLane",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/odsay/loadLane?mapObj=4:2:426:425",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"odsay",
+								"loadLane"
+							],
+							"query": [
+								{
+									"key": "mapObj",
+									"value": "4:2:426:425"
+								},
+								{
+									"key": "mapObj",
+									"value": "1222:1:50:51",
+									"disabled": true
+								},
+								{
+									"key": "mapObj",
+									"value": "11:2:133:132",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/odsay/stops",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/odsay/stops?mapx=126.895951&mapy=37.52497&lang=0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"odsay",
+								"stops"
+							],
+							"query": [
+								{
+									"key": "mapx",
+									"value": "126.895951"
+								},
+								{
+									"key": "mapy",
+									"value": "37.52497"
+								},
+								{
+									"key": "lang",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "/users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"1234\",\r\n    \"phone\":\"0100123\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"name\":\"Luna Do\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4MzEzNjM4LCJleHAiOjE3Mjg0MDAwMzh9.iF44udGiZ-8yy_jkXjCiFUmGEUDyzncM6bYPHUPuk4sqG9cQZw3RKeqtbMwnlwas",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users (update info)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4MzEzNjM4LCJleHAiOjE3Mjg0MDAwMzh9.iF44udGiZ-8yy_jkXjCiFUmGEUDyzncM6bYPHUPuk4sqG9cQZw3RKeqtbMwnlwas",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\":\"0934341\",\r\n    \"name\":\"Lido\",\r\n    \"email\":\"lido@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/users",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/avatar (update avatar)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4MzEzNjM4LCJleHAiOjE3Mjg0MDAwMzh9.iF44udGiZ-8yy_jkXjCiFUmGEUDyzncM6bYPHUPuk4sqG9cQZw3RKeqtbMwnlwas",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "postman-cloud:///1ef84be9-0f87-4770-b35e-e64ea90e49c3"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/users/avatar",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"avatar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/password (change pw)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4MzEzNjM4LCJleHAiOjE3Mjg0MDAwMzh9.iF44udGiZ-8yy_jkXjCiFUmGEUDyzncM6bYPHUPuk4sqG9cQZw3RKeqtbMwnlwas",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "postman-cloud:///1ef84be9-0f87-4770-b35e-e64ea90e49c3"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/users/password?oldPw=1234&newPw=Luna@01",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"password"
+									],
+									"query": [
+										{
+											"key": "oldPw",
+											"value": "1234"
+										},
+										{
+											"key": "newPw",
+											"value": "Luna@01"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "token",
+					"item": [
+						{
+							"name": "/token/issue (admin)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"luna010209\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/token/issue",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"token",
+										"issue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/token/issue (user)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"user2\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/token/issue",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"token",
+										"issue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/token/issue (newUser)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\":\"user\",\r\n    \"password\":\"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/token/issue",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"token",
+										"issue"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "/message",
+					"request": {
+						"method": "POST",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tourist",
+			"item": [
+				{
+					"name": "korean",
+					"item": [
+						{
+							"name": "/tours (allLandmark)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/kor/landmark?pageNo=2",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"kor",
+										"landmark"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "2"
+										},
+										{
+											"key": "sigunguCode",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours (allRestaurant)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/kor/restaurant?pageNo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"kor",
+										"restaurant"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours (allAccommodation)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/kor/restaurant?pageNo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"kor",
+										"restaurant"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours/{contentId} (detail)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/kor/2733967",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"kor",
+										"2733967"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours/kor (detail) City",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/kor/city",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"kor",
+										"city"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "english",
+					"item": [
+						{
+							"name": "/tours (allLandmark)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/eng/landmark?pageNo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"eng",
+										"landmark"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours (allRestaurant)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/eng/restaurant?pageNo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"eng",
+										"restaurant"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours (allAccommodation)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/eng/accommodation?pageNo=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"eng",
+										"accommodation"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/tours/{contentId} (detail) Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8080/tours/eng/2590011",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"tours",
+										"eng",
+										"2590011"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Posting",
+					"item": [
+						{
+							"name": "/posting (user2)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyMiIsImlhdCI6MTcyODM5OTA0NiwiZXhwIjoxNzI4NDg1NDQ2fQ.Gy1scTH3Kij_Ub3M9Yl01xLPM2LECcwGE2lRPeTSykYuYvXti2NPXbio4vVZ6RHE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Title1\",\r\n    \"content\": \"content1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/posting",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"posting"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/posting (user2) 2",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyMiIsImlhdCI6MTcyODM5OTA0NiwiZXhwIjoxNzI4NDg1NDQ2fQ.Gy1scTH3Kij_Ub3M9Yl01xLPM2LECcwGE2lRPeTSykYuYvXti2NPXbio4vVZ6RHE",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Title2\",\r\n    \"content\": \"content2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/posting",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"posting"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/posting (admin)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJsdW5hMDEwMjA5IiwiaWF0IjoxNzI4Mzk5MTU4LCJleHAiOjE3Mjg0ODU1NTh9.4w4P4wdHZKtT6XNa3XQRmLOtvCvv6YQKH5-ANXhtZSBx-4a9yVrPAddeRDI8yScO",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Title3\",\r\n    \"content\": \"content3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/posting",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"posting"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comment",
+					"item": [
+						{
+							"name": "/comments",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4Mzk5NDYyLCJleHAiOjE3Mjg0ODU4NjJ9.Nr48AiP_WvCsRKKL1xnRTUygdiz9opiPuOqZbS51Y_sIXPubLCUlwoxz72Axdt4X",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"Amazing\",\r\n    \"postingId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/comments",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"comments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/comments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4Mzk5NDYyLCJleHAiOjE3Mjg0ODU4NjJ9.Nr48AiP_WvCsRKKL1xnRTUygdiz9opiPuOqZbS51Y_sIXPubLCUlwoxz72Axdt4X",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"postingId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/comments",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"comments"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Emotion",
+					"item": [
+						{
+							"name": "/like",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4NDAwMjUwLCJleHAiOjE3Mjg0ODY2NTB9.S7zk586vxBT-OPt1A8WBuZDRUOW3n7-wWWD1bS6Tj7VXD72qEMbHmoeDXAgTcIH6",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"postingId\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/like",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"like"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/like",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNzI4NDAwMjUwLCJleHAiOjE3Mjg0ODY2NTB9.S7zk586vxBT-OPt1A8WBuZDRUOW3n7-wWWD1bS6Tj7VXD72qEMbHmoeDXAgTcIH6",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"postingId\":2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8080/like",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8080",
+									"path": [
+										"like"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
