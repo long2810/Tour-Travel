@@ -5,70 +5,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/post_fronted/assets/css/post.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/navbar_base.css">
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/post.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Nanum Myeongjo", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+    </style>
 </head>
 
 <body>
     <div class="container">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg bg-light fixed-top px-5 z-3">
             <div class="container-fluid ">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand fs-1" href="#">Travel</a>
-                <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
-                    <div class="d-flex w-100 justify-content-center align-items-center">
+                <div class="dropdown navbar-menu">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="dropdown"
+                        data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <ul class="dropdown-menu navbar-menu-list" aria-labelledby="dropdownMenuButton">
+                        <div class="d-flex">
+                            <input class="form-control fs-6" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn-search" type="submit"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <li><a class="dropdown-item navbar-menu-item" href="#">여행코스</a></li>
+                        <li><a class="dropdown-item navbar-menu-item" href="#">관광지</a></li>
+                        <li><a class="dropdown-item navbar-menu-item" href="#">플로그</a></li>
+                        <li><a class="dropdown-item navbar-menu-item" href="#">지도</a></li>
+                    </ul>
+                </div>
+
+                <a class="navbar-brand fs-2" href="#">Seoul Travel</a>
+                <div class="collapse navbar-collapse mx-4 " id="navbarTogglerDemo03">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
                         <ul class="navbar-nav  me-auto mb-2 mb-lg-0 ">
                             <li class="nav-item mx-3">
-                                <a class="nav-link fs-3 active" aria-current="page" href="#">Home</a>
+                                <a class="navbar-brand  fs-4 active" aria-current="page" href="#">여행 코스</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link fs-3" href="#">Link</a>
+                                <a class="navbar-brand  fs-4" href="#">관광지</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link fs-3" href="#">Post</a>
+                                <a class="navbar-brand  fs-4" href="#">플로그</a>
                             </li>
                         </ul>
-                        <form class="d-flex margin-auto" role="search">
-                            <input class="form-control me-2 fs-2" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn-sm btn-outline-success fs-2" type="submit">Search</button>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2 fs-5" type="search" placeholder="검색" aria-label="Search">
+                            <button class="btn btn-secondary fs-5" type="submit">Search</button>
                         </form>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <!-- <i class="fa-solid fa-location-dot fa-2x " style="color: #d21e1e;"></i> -->
+                            <img src="/post_fronted/assets/image/map.png" class="profile-image ms-4">
+                        </div>
                     </div>
                 </div>
-                <div class="d-flex align-items-center">
-                    <div><img src="/post_fronted/assets/image/anhthe.jpg" class="profile-image"> </div>
-                    <a class="nav-link m-3 fs-4" aria-current="page" href="#">찬부렁</a>
+                <div class="dropdown">
+                    <div id="profileButton" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img src="/post_fronted/assets/image/anhthe.jpg"
+                            class="rounded-circle border border-secondary profile-image">
+                    </div>
+                    <div class="dropdown-menu" id="profile-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="d-flex align-items-center mt-1">
+                            <i class="fa-solid fa-circle-user fa-lg mx-2"></i>
+                            <p class=" mb-0 fs-6 text-center">Tran Vu Long</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-user ms-2"></i>
+                            <a class="dropdown-item" href="#">프로필</a>
+                        </div>
+                        <div class="d-flex align-items-center ">
+                            <i class="fa-solid fa-right-from-bracket ms-2"></i>
+                            <a class="dropdown-item" href="#">로그아웃</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
         <!-- body -->
         <div class="container post">
-            <p class="post-title fs-1 fw-bold text-center">8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver) </p>
-            <div class="post-header d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                    <div><img src="/post_fronted/assets/image/anhthe.jpg" class="profile-image"> </div>
-                    <a class="nav-link m-3 fs-3" aria-current="page" href="#">찬부렁</a>
-                </div>
+            <p class="post-title fs-2 fw-bold text-center">8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver) </p>
+            <div class="d-flex align-items-center">
+                <div><img src="/post_fronted/assets/image/anhthe.jpg"
+                        class="rounded-circle border border-secondary profile-image"> </div>
+                <a class="navbar-brand  m-3 fs-6" aria-current="page" href="#">찬부렁</a>
             </div>
             <hr>
-            <img src="assets/image/여행1.jpg" class="post-image d-block mx-auto" alt="">
+            <img src="/post_fronted/assets/image/여행1.jpg" class="post-image d-block mx-auto" alt="">
             <div class="container post-body">
-                <p class="post-body-title fs-2 fw-bold mt-5">1.속초</p>
-                <img src="assets/image/속초.jpg" class="post-image w-50 d-block mx-auto">
-                <p class="fs-2 fw-bold mt-5">✅ 속초아이대관람차, 설악워터피아, 속초해수욕장, 영금정
+                <p class="post-body-title fs-4 fw-bold mt-5">1.속초</p>
+                <img src="/post_fronted/assets/image/속초.jpg" class="post-image w-50 d-block mx-auto">
+                <p class="fs-4 fw-bold mt-5">✅ 속초아이대관람차, 설악워터피아, 속초해수욕장, 영금정
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
                 </p>
-                <p class="fs-3">
+                <p class="fs-5">
                     대표적인 여름휴가지 속초입니다. 8월에 속초 여행을 떠난다면 해수욕장에서의 물놀이를 빼놓을 수 없겠죠. 속초해수욕장 인근에 많은 숙박업소가 마련되어 있어 물놀이 후 깨끗하게
                     바닷물을 씻어내기에도 좋습니다. 속초해수욕장 입구에는 대관람차가 있는데요.
                     <br>
@@ -83,13 +126,13 @@
                 </p>
             </div>
             <div class="container post-body">
-                <p class="post-body-title fs-2 fw-bold mt-5">2.사척</p>
-                <img src="assets/image/삼척.jpg" class="post-image w-50 d-block mx-auto">
-                <p class="fs-2 fw-bold mt-5">
+                <p class="post-body-title fs-4 fw-bold mt-5">2.사척</p>
+                <img src="/post_fronted/assets/image/삼척.jpg" class="post-image w-50 d-block mx-auto">
+                <p class="fs-4 fw-bold mt-5">
                     ✅ 환선굴, 갈남항, 무건리이끼폭포, 미인폭포
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
                 </p>
-                <p class="fs-3">
+                <p class="fs-5">
                     맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼
                     수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
@@ -106,13 +149,13 @@
                 </p>
             </div>
             <div class="container post-body">
-                <p class="post-body-title fs-2 fw-bold mt-5">3.담양</p>
-                <img src="assets/image/담양.jpg" class="post-image w-50 d-block mx-auto">
-                <p class="fs-2 fw-bold mt-5">
+                <p class="post-body-title fs-4 fw-bold mt-5">3.담양</p>
+                <img src="/post_fronted/assets/image/담양.jpg" class="post-image w-50 d-block mx-auto">
+                <p class="fs-4 fw-bold mt-5">
                     ✅ 환선굴, 갈남항, 무건리이끼폭포, 미인폭포
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
                 </p>
-                <p class="fs-3">
+                <p class="fs-5">
                     맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼
                     수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
@@ -129,13 +172,13 @@
                 </p>
             </div>
             <div class="container post-body">
-                <p class="post-body-title fs-2 fw-bold mt-5">4.부산</p>
-                <img src="assets/image/부산.jpg" class="post-image w-50 d-block mx-auto">
-                <p class="fs-2 fw-bold mt-5">
+                <p class="post-body-title fs-4 fw-bold mt-5">4.부산</p>
+                <img src="/post_fronted/assets/image/부산.jpg" class="post-image w-50 d-block mx-auto">
+                <p class="fs-4 fw-bold mt-5">
                     ✅ 환선굴, 갈남항, 무건리이끼폭포, 미인폭포
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
                 </p>
-                <p class="fs-3">
+                <p class="fs-5">
                     맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼
                     수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.
                     [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡
@@ -153,13 +196,26 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const profileButton = document.getElementById('profileButton');
+        const dropdownMenu = document.getElementById('profile-dropdown-menu');
+        profileButton.addEventListener('click', function () {
+            if (dropdownMenu.style.display == 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        })
+
+        window.addEventListener('click', function (e) {
+            if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
-<!-- <div class="postState d-flex fs-5 align-items-center">
-    <p class="post-like me-1 fs-3 text-dark">공감</p>
-    <p class="post-likeCount me-2 fs-3 text-dark">50 </p>
-    <i class="fa-solid fa-heart "></i>
-    <p class="post-comment me-1 fs-3 text-dark">댓글</p>
-    <p class="post-commentCount me-2  fs-3 text-dark">27</p>
-</div> -->
