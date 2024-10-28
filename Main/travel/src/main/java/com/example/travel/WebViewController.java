@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("travel")
 public class WebViewController {
+    @GetMapping("home")
+    public String home(){
+        return "home";
+    }
     @GetMapping("map")
     public String view(){
-        return "map";
+        return "direction/map";
     }
     @GetMapping("message")
     public String message(){
@@ -19,9 +23,13 @@ public class WebViewController {
     public String login(){
         return "user/login";
     }
-    @GetMapping("register")
+    @GetMapping("signup")
     public String register(){
-        return "user/register";
+        return "user/create";
+    }
+    @GetMapping("profile")
+    public String profile(){
+        return "user/profile";
     }
     @GetMapping("/tour")
     public String tourist(){
@@ -39,4 +47,5 @@ public class WebViewController {
     public String allBooking(){
         return "booking/user/allBooking";
     }
+
 }

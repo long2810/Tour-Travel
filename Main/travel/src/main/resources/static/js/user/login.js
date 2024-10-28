@@ -1,7 +1,6 @@
-// console.log(localStorage.getItem("token"));
-// if (localStorage.getItem("token")) {
-//     location.href= "/lu/profile";
-// }
+if (localStorage.getItem("token")) {
+    location.href= "/travel/home";
+}
 
 const usernameLogin = document.getElementById("username");
 const passwordLogin = document.getElementById("password");
@@ -43,12 +42,13 @@ formLogin.addEventListener("submit", e=>{
     // 응답을 담긴 JWT 를 저장한다
     .then(json => {
         localStorage.setItem("token", json.token);
-        console.log(json);
-        if (dataLogin.username==="luna010209"){
-            location.href="/admin/message";
-        } else{
-            location.href="/travel/message";
-        }
+        location.href="/travel/profile";
+        // console.log(json);
+        // if (dataLogin.username==="luna010209"){
+        //     location.href="/admin/message";
+        // } else{
+        //     location.href="/travel/message";
+        // }
     })
     .catch(e =>{
         alert(e.message)

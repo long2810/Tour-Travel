@@ -33,8 +33,8 @@ public class TokenOAuth2SuccessHandler
 
         // return link to get token
         String targetUrl = String.format(
-//                "http://127.0.0.1:8080/lu/chat"
-                "http://127.0.0.1:8080/token/oauth"
+                "http://127.0.0.1:8080/travel/login"
+//                "http://127.0.0.1:8080/token/oauth"
         );
         //redirect 한다
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
