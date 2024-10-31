@@ -117,16 +117,5 @@ public class UserService implements UserDetailsService {
         return users;
     }
 
-    public Integer countUserSendMes(){
-        UserEntity user = userComponent.userLogin();
-        return messageRepo.countUserSendMes(user);
-    }
-
-    public Integer countMesByUser(Long senderId){
-        UserEntity user = userComponent.userLogin();
-        UserEntity sender = userComponent.userById(senderId);
-        return messageRepo.countMes(user, sender);
-    }
-
 
 }

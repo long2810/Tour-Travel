@@ -17,8 +17,7 @@ public interface MessageRepo extends JpaRepository<Message, Long> {
                                @Param("user2") UserEntity user2);
     // Count user sending message;
     @Query("SELECT COUNT(DISTINCT m.sender) FROM Message m "+
-            "WHERE m.receiver = :user AND m.confirm = false " +
-            "GROUP BY m.sender")
+            "WHERE m.receiver = :user AND m.confirm = false ")
     Integer countUserSendMes(@Param("user") UserEntity user);
 
     // Count message by sender;

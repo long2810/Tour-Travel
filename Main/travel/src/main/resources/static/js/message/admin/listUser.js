@@ -24,7 +24,7 @@ function allUsers(user){
     `
     listUsers.appendChild(oneuser);
 
-    fetch(`/users/count-mes/${user.id}`, {
+    fetch(`/messages/admin/count-mes/${user.id}`, {
         method:"GET",
         headers: {
             "Authorization": `Bearer ${tokenUser}`,

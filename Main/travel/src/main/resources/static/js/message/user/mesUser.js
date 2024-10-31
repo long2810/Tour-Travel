@@ -54,7 +54,7 @@ function confirmMes (mes){
 
 
 
-fetch("/users/count-mes/1", {
+fetch("/messages/user/count-mes", {
     headers: {
         "Authorization": `Bearer ${tokenMes}`,
         "Content-type": "Application/json",

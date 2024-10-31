@@ -90,7 +90,7 @@ function login(){
                                 <a class="navbar-brand" href="/admin/booking">예약 관리</a>
                             </li>
                         </ul>
-                        <div id="manage-mes" class="d-none d-flex align-items-center justify-content-center">
+                        <div id="manage-mes" class="d-none d-flex align-items-center justify-content-center position-relative">
                             <a href="/admin/message"><i class="fa-solid fa-comments"></i></a>
                             <span id="countUser" class="d-none position-absolute" style="top: -1px; right: -7px; background: red; color: white; border-radius: 50%; padding:1px 6px; font-size: 10px;">3</span>
                         </div>
@@ -167,7 +167,7 @@ fetch("/users", {
         const manageBooking= document.getElementById("manage-booking");
         manageBooking.classList.remove("d-none");
         document.getElementById("manage-mes").classList.remove("d-none");
-        fetch("/users/count-user", {
+        fetch("/messages/admin/count-user", {
             headers: {
                 "Authorization": `Bearer ${tokenNavbar}`,
                 "Content-type": "Application/json",

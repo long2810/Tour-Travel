@@ -59,12 +59,5 @@ public class UserController {
         return UserDto.dto(userComponent.userById(userId));
     }
 
-    @GetMapping("count-user")
-    public Integer countUserSendMes(){
-        return userService.countUserSendMes();
-    }
-    @GetMapping("count-mes/{senderId}")
-    public Integer countMesByUser(@PathVariable("senderId") Long senderId){
-        return userService.countMesByUser(senderId);
-    }
+
 }

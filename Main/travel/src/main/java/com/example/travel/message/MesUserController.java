@@ -21,4 +21,9 @@ public class MesUserController {
     public MessageDto confirm(@PathVariable("messageId") Long messageId){
         return messageService.confirm(messageId);
     }
+
+    @GetMapping("count-mes")
+    public Integer countMesByUser(){
+        return messageService.countMesByUser(1L);
+    }
 }
