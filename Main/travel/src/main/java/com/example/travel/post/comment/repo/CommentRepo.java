@@ -13,4 +13,7 @@ import java.util.List;
 public interface CommentRepo extends JpaRepository<Comment,Long> {
     @Query("SELECT DISTINCT c FROM Comment c JOIN FETCH c.posting WHERE c.posting=:posting")
     List<Comment> listCommentPosting(@Param("posting")Posting posting);
+
+    @Query("SELECT COUNT(*) FROM Comment WHERE posting.id = :postId")
+    Long countCommentByPostId(@Param("postId") Long postId);
 }

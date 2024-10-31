@@ -147,7 +147,6 @@ function disShopAround(){
         }
     })
 }
-
 function mainDis(contentId){
     fetch(`/tours/kor/detail/${contentId}`, {
         method: "GET"

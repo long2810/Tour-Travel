@@ -53,7 +53,7 @@ spring:
 
   web:
     resources:
-      static-locations: classpath:/static,file:profile/
+      static-locations: classpath:/static,file:profile/,file:posting-media/
 
   datasource:
     url: jdbc:sqlite:db.sqlite

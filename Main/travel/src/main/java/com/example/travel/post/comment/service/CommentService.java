@@ -76,4 +76,8 @@ public class CommentService {
         }
         return dtos;
     }
+
+    public Long commentCountOfPost(Long postId) {
+        return commentRepo.countCommentByPostId(postId);
+    }
 }

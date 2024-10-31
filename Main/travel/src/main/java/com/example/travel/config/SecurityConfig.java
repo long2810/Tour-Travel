@@ -39,7 +39,8 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.POST,
                             "/users").permitAll();
                     auth.requestMatchers("/users", "/messages", "/booking/**").hasRole("USER");
-
+                    auth.requestMatchers("/travel/**").permitAll();
+                    auth.requestMatchers("/posting-view/**").permitAll();
 //                    auth.anyRequest().hasRole("USER");
                     auth.anyRequest().permitAll();
                 })

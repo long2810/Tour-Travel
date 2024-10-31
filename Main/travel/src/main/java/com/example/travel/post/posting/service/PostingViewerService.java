@@ -20,6 +20,7 @@ public class PostingViewerService {
     private final PostRepo postRepo;
     private final ImagePostRepo imageRepository;
     private final UserComponent userComponent;
+    
 
     public PostingDto readOne(Long postId){
         Posting posting = postRepo.findById(postId)

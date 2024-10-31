@@ -19,6 +19,7 @@ public class PostingController {
     public PostingDto create(
             @RequestBody PostingDto dto
     ) {
+        log.info(dto.toString());
         return postingService.create(dto);
     }
 

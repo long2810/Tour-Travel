@@ -40,4 +40,8 @@ public class LikeService {
     public void delete(Long likeId){
         likeRepo.deleteById(likeId);
     }
+
+    public long getLikeCountByPostId(Long postId) {
+        return likeRepo.countLikesByPostId(postId);
+    }
 }

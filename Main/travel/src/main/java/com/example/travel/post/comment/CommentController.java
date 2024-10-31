@@ -45,5 +45,11 @@ public class CommentController {
     public CommentDto readOne(@PathVariable("commentId") Long commentId) {
         return commentService.readOne(commentId);
     }
+
+    @GetMapping("{postId}")
+    public Long getCountComment(@PathVariable("postId") Long postId) {
+        return commentService.commentCountOfPost(postId);
+    }
 }
+
 
