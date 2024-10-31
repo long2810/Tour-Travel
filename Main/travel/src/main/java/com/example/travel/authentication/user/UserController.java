@@ -2,7 +2,6 @@ package com.example.travel.authentication.user;
 
 import com.example.travel.authentication.component.UserComponent;
 import com.example.travel.authentication.user.dto.UserDto;
-import com.example.travel.authentication.user.service.AfterLoginService;
 import com.example.travel.authentication.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -58,5 +57,14 @@ public class UserController {
     @GetMapping("{userId}")
     public UserDto user(@PathVariable("userId") Long userId){
         return UserDto.dto(userComponent.userById(userId));
+    }
+
+    @GetMapping("count-user")
+    public Integer countUserSendMes(){
+        return userService.countUserSendMes();
+    }
+    @GetMapping("count-mes/{senderId}")
+    public Integer countMesByUser(@PathVariable("senderId") Long senderId){
+        return userService.countMesByUser(senderId);
     }
 }

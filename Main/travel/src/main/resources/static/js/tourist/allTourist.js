@@ -68,43 +68,53 @@ const searchByCity = document.getElementById("search-by-city");
 document.getElementById(`code${city.value}`).selected=true;
 
 let currentPage =1;
+let currentRange =1;
 function totalPage(result){
     pagination.innerHTML=``;
-    const totalPage = Math.ceil(result.totalCount/10);
+    const numOfPage = Math.ceil(result.totalCount/10);
     const pageShow = 9;
-    const totalRange = Math.ceil(totalPage/pageShow);
+    const totalRange = Math.ceil(numOfPage/pageShow);
+    console.log(totalRange);
+    
     // const currentPage = result.pageNo;
-    let currentRange = Math.ceil(currentPage/pageShow);
-    if (currentRange===totalRange) next.classList.add("disabled");
-    if (currentRange===1) previous.classList.add("disabled");
-    next.addEventListener("click", e=>{
-        e.preventDefault();
-        currentRange++;
-        // location.href=`/view/tour/${(currentRange-1)*9+1}`
-        listPage();
-        currentPage = (currentRange-1)*9+1;
-        document.getElementById(`page${currentPage}`).classList.add("active");
-        defaultDis(currentPage);
-        previous.classList.remove("disabled");
-        if (currentRange===totalRange) next.classList.add("disabled");
-    })
-    previous.addEventListener("click", e=>{
-        e.preventDefault();
-        currentRange--;
-        // location.href=`/view/tour/${(currentRange-1)*9+10}`
-        listPage();
-        currentPage = (currentRange-1)*9+9;
-        document.getElementById(`page${currentPage}`).classList.add("active");
-        defaultDis(currentPage);
-        next.classList.remove("disabled");
-        if (currentRange===1) previous.classList.add("disabled");
-    })
+    currentRange = Math.ceil(currentPage/pageShow);
+    console.log(currentRange);
+    if (currentRange===totalRange){next.classList.add("disabled");} 
+    else {
+        next.addEventListener("click", e=>{
+            e.preventDefault();
+            currentRange++;
+                listPage();
+                currentPage = (currentRange-1)*9+1;
+                document.getElementById(`page${currentPage}`).classList.add("active");
+                defaultDis(currentPage);
+                previous.classList.remove("disabled");
+            
+            // else if (currentRange===totalRange) next.classList.add("disabled");
+        })
+    }
+    
+    if (currentRange===1) {previous.classList.add("disabled");}
+    else {
+        previous.addEventListener("click", e=>{
+            e.preventDefault();
+            currentRange--;
+                // location.href=`/view/tour/${(currentRange-1)*9+10}`
+                listPage();
+                currentPage = (currentRange-1)*9+9;
+                document.getElementById(`page${currentPage}`).classList.add("active");
+                defaultDis(currentPage);
+                next.classList.remove("disabled");
+            
+            // else if (currentRange===1) previous.classList.add("disabled");
+        })
+    }
     
     listPage();
     document.getElementById(`page${currentPage}`).classList.add("active");
     function listPage(){
         pagination.innerHTML=``;
-        let endRange = Math.min((currentRange-1)*9+10, totalPage+1);
+        let endRange = Math.min((currentRange-1)*9+10, numOfPage+1);
 
         for (let i = (currentRange-1)*9+1; i<endRange; i++){
             const li = document.createElement("li");

@@ -1,5 +1,12 @@
 const token = localStorage.getItem("token");
 const allBooking = document.getElementById("allBooking");
+const authorities = localStorage.getItem("authorities");
+
+if (!(authorities && authorities.includes("ROLE_ADMIN"))){
+    document.getElementById("all-display").innerHTML=``;
+    alert("접속 못 합니다!!!")
+    location.href="/travel/home";
+}
 
 function display(booking){
     const div = document.createElement("div");

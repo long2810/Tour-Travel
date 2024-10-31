@@ -40,6 +40,7 @@ public class PostingViewerService {
 
     public List<PostingDto> allPosting(){
         List<PostingDto> dtoList = new ArrayList<>();
+
         for (Posting posting: postRepo.findAll()){
             dtoList.add(PostingDto.fromEntity(posting));
         }

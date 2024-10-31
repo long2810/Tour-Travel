@@ -42,7 +42,7 @@ formLogin.addEventListener("submit", e=>{
     // 응답을 담긴 JWT 를 저장한다
     .then(json => {
         localStorage.setItem("token", json.token);
-        location.href="/travel/profile";
+        location.href="/travel/home";
         // console.log(json);
         // if (dataLogin.username==="luna010209"){
         //     location.href="/admin/message";
@@ -60,4 +60,17 @@ const naverLogin= document.getElementById("naver");
 naverLogin.addEventListener("click", e=>{
     // e.preventDefault();
     
+})
+
+fetch("/token/oauth", {
+    headers: {
+        "Content-type": "Application/json",
+    }
+}).then(response=>{
+    if (response.ok){return response.json();}
+    else {}
+}).then(json=>{
+    localStorage.setItem("token", json.token);
+    // localStorage.setItem("authorities", json.stringAuthorities);
+    location.href="/travel/home";
 })

@@ -26,6 +26,8 @@ public class UserDto implements UserDetails, OAuth2User {
     private String email;
     private String phone;
     private String profileImg;
+    private Integer countUserSendMes;
+    private Integer countMesByUser;
     private final Set<String> stringAuthorities = new HashSet<>();
 
     public static UserDto dto (UserEntity entity){

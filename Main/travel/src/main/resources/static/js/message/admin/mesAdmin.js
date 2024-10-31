@@ -30,7 +30,7 @@ fetch(`/users/${receiverId}`, {
 
 function confirmMes(mes){
     if (mes.receiverId===1 && !mes.confirm){
-        if (mesInput.value!==null){
+        // if (mesInput.value!==null){
             fetch(`/messages/admin/confirm/${mes.id}`, {
                 method: "PUT",
                 headers: {
@@ -39,8 +39,9 @@ function confirmMes(mes){
                 }
             }).then(response=>{
                 if (response.ok){
-                    count=0;
-                    countMes.classList.add("d-none");
+                    // const dis= document.getElementById(`mes-count${receiverId}`);
+                    // dis.innerText=0;
+                    // dis.classList.add("d-none");
                     return response.json();
                 } else{
                     return response.text().then(text=>{alert(text)})
@@ -48,7 +49,7 @@ function confirmMes(mes){
             }).catch(e=>{
                 alert(e.message);
             })
-        }    
+        // }    
     }
 }
 
@@ -69,9 +70,9 @@ fetch(`/messages/admin/chat/${receiverId}`, {
         displayMes(message);
         editMes(message);
         confirmMes(message);
-        if (!message.confirm && message.receiverId===1){
-            count++;
-        }
+        // if (!message.confirm && message.receiverId===1){
+        //     count++;
+        // }
     })
     // if (count===0) countMes.classList.add("d-none");
     // else {
@@ -81,8 +82,9 @@ fetch(`/messages/admin/chat/${receiverId}`, {
 })
 
 
+
 function displayMes(message) {
-    if (message.senderId === receiverId) {
+    if (message.senderId === Number(receiverId)) {
         const divMain = document.createElement("div");
         divMain.className = "chat-messages me-5 pb-2 d-flex flex-wrap align-items-center";
         divMain.id = `mes${message.id}`

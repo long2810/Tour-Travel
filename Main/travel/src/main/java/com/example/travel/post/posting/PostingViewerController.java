@@ -17,8 +17,8 @@ public class PostingViewerController {
     private final PostingViewerService postingService;
     @GetMapping
     public List<PostingDto> allPosting(
-            @RequestParam("keyword") String keyword,
-            @RequestParam("userId") Long userId
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "userId", required = false) Long userId
     ){
         if (keyword!=null) return postingService.allPostingKeyword(keyword);
         else if (userId!=null) return postingService.allPostingByWriter(userId);

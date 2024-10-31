@@ -28,18 +28,18 @@ window.addEventListener('scroll', function () {
 });
 
 
-const profileButton = document.getElementById('profileButton');
-const dropdownMenu = document.getElementById('profile-dropdown-menu');
-profileButton.addEventListener('click', function () {
-  if (dropdownMenu.style.display == 'block') {
-    dropdownMenu.style.display = 'none';
-  } else {
-    dropdownMenu.style.display = 'block';
-  }
-})
+// const profileButton = document.getElementById('profileButton');
+// const dropdownMenu = document.getElementById('profile-dropdown-menu');
+// profileButton.addEventListener('click', function () {
+//   if (dropdownMenu.style.display == 'block') {
+//     dropdownMenu.style.display = 'none';
+//   } else {
+//     dropdownMenu.style.display = 'block';
+//   }
+// })
 
-window.addEventListener('click', function (e) {
-  if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-    dropdownMenu.style.display = 'none';
-  }
-});
+// window.addEventListener('click', function (e) {
+//   if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+//     dropdownMenu.style.display = 'none';
+//   }
+// });

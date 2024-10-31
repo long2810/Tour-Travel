@@ -22,21 +22,21 @@ import java.util.List;
 public class ImagePostingService {
     private final PostRepo postRepo;
     private final ImagePostRepo imagePostRepo;
-    private final static String[] images = {
-            "/static/visual/posting/image1.png",
-            "/static/visual/posting/image2.png",
-            "/static/visual/posting/image3.png",
-            "/static/visual/posting/image4.png"
-    };
+//    private final static String[] images = {
+//            "/static/visual/posting/image1.png",
+//            "/static/visual/posting/image2.png",
+//            "/static/visual/posting/image3.png",
+//            "/static/visual/posting/image4.png"
+//    };
 
     public ImagePostingService(PostRepo postRepo, ImagePostRepo imagePostRepo) {
         this.postRepo = postRepo;
         this.imagePostRepo = imagePostRepo;
-        for (String image: images){
-            if (!imagePostRepo.existsByLink(image)){
-                imagePostRepo.save(ImagePosting.builder().link(image).build());
-            }
-        }
+//        for (String image: images){
+//            if (!imagePostRepo.existsByLink(image)){
+//                imagePostRepo.save(ImagePosting.builder().link(image).build());
+//            }
+//        }
     }
 
     //add Image to post

@@ -24,28 +24,28 @@ function allUsers(user){
     `
     listUsers.appendChild(oneuser);
 
-    // fetch(`/users/mes/${user.id}`, {
-    //     method:"GET",
-    //     headers: {
-    //         "Authorization": `Bearer ${tokenuser}`,
-    //         "Content-type": "application/json",
-    //     }
-    // }).then(response=>{
-    //     if (response.ok){
-    //         return response.json();
-    //     } else {
-    //         return response.text().then(text=>{
-    //             alert(text);
-    //         })
-    //     }
-    // })
-    // .then(numOfMes=>{
-    //     const mesCountDis = document.getElementById(`mes-count${user.id}`);
-    //     mesCountDis.innerText= numOfMes;
-    //     if (numOfMes>0) mesCountDis.classList.remove("d-none");
-    // }).catch(e=>{
-    //     alert(e.message);
-    // })
+    fetch(`/users/count-mes/${user.id}`, {
+        method:"GET",
+        headers: {
+            "Authorization": `Bearer ${tokenUser}`,
+            "Content-type": "application/json",
+        }
+    }).then(response=>{
+        if (response.ok){
+            return response.json();
+        } else {
+            return response.text().then(text=>{
+                alert(text);
+            })
+        }
+    })
+    .then(numOfMes=>{
+        const mesCountDis = document.getElementById(`mes-count${user.id}`);
+        mesCountDis.innerText= numOfMes;
+        if (numOfMes>0) mesCountDis.classList.remove("d-none");
+    }).catch(e=>{
+        alert(e.message);
+    })
 }
 
 fetch("/users/all", {

@@ -1,8 +1,11 @@
 package com.example.travel;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("travel")
@@ -43,9 +46,23 @@ public class WebViewController {
     public String booking(){
         return "booking/user/booking";
     }
-    @GetMapping("your-booking")
+    @GetMapping("my-booking")
     public String allBooking(){
         return "booking/user/allBooking";
     }
 
+    @GetMapping("payment/{bookId}")
+    public String index() {
+        return "payment/checkout";
+    }
+
+    @GetMapping("payment/success/{bookId}")
+    public String successPayment(){return "payment/success";}
+
+    @GetMapping("payment/fail/{bookId}")
+    public String failPayment(HttpServletRequest request, Model model) {
+        model.addAttribute("code", request.getParameter("code"));
+        model.addAttribute("message", request.getParameter("message"));
+        return "payment/fail";
+    }
 }

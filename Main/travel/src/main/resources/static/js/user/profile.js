@@ -131,15 +131,12 @@ function allPost(posting){
     div.className="w-100 mb-1 d-flex";
     div.innerHTML=
     `
-    <a href="#" class="d-flex text-decoration-none text-dark">
+    <a href="/travel/post/${posting.id}" class="d-flex text-decoration-none text-dark align-items-center">
         <div class="col-12 col-lg-9 border rounded p-3">
             <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-center mb-2">
-                    <img src="${posting.writerAvatar}" class="rounded-circle border border-secondary">
+                    <img src="${posting.writerAvatar}" class="rounded-circle border border-secondary" style="height: 40px;">
                     <span>${posting.writer}</span>
-                </div>
-                <div>
-                    <a href="/travel/posting/${posting.id}" type="button" class="btn btn-outline-primary">수정</a>
                 </div>
             </div>
                                     
@@ -147,17 +144,25 @@ function allPost(posting){
             <div class="">
                 ${posting.content.slice(0,100)}...
             </div>
-            <div class="d-flex flex-wrap">
-                <p>공감 <span>${posting.numOfLike}</span></p><br>
-                <p>댓글 <span>${posting.numOfComment}</span></p>
-            </div>
         </div>
         <div class="d-none d-lg-flex col-3 rounded p-3">
-            <img src="${posting.images[0]}" class="img-fluid">
+            <img src="/static/visual/posting/image${Math.floor(Math.random() * 4) + 1}.png" class="img-fluid">
         </div>
     </a>
     `;
     listPost.appendChild(div);
 }
 
-
+fetch("/posting", {
+    headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-type": "Application/json",
+    }
+}).then(response=>{
+    if (response.ok){return response.json();}
+    else{return response.text().then(text=>{alert(text)})}
+}).then(json=>{
+    json.forEach(posting=>{
+        allPost(posting);
+    })
+})
