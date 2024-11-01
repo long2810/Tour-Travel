@@ -112,6 +112,7 @@ public class BookToursService {
         }
         return result;
     }
+
     public List<BookToursDto> userBookingsByStatus(BookTours.Status status){
         List<BookToursDto> result= new ArrayList<>();
         for (BookTours booking: bookToursRepo.userBookingByStatus(userComponent.userLogin(), status)){

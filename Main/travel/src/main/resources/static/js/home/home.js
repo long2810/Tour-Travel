@@ -28,18 +28,27 @@ window.addEventListener('scroll', function () {
 });
 
 
-const profileButton = document.getElementById('profileButton');
-const dropdownMenu = document.getElementById('profile-dropdown-menu');
-profileButton.addEventListener('click', function () {
-  if (dropdownMenu.style.display == 'block') {
-    dropdownMenu.style.display = 'none';
-  } else {
-    dropdownMenu.style.display = 'block';
-  }
+// const profileButton = document.getElementById('profileButton');
+// const dropdownMenu = document.getElementById('profile-dropdown-menu');
+// profileButton.addEventListener('click', function () {
+//   if (dropdownMenu.style.display == 'block') {
+//     dropdownMenu.style.display = 'none';
+//   } else {
+//     dropdownMenu.style.display = 'block';
+//   }
+// })
+
+// window.addEventListener('click', function (e) {
+//   if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+//     dropdownMenu.style.display = 'none';
+//   }
+// });
+
+document.getElementById("postBtn").addEventListener("click", function() {
+  location.href = "/travel/post"
 })
 
-window.addEventListener('click', function (e) {
-  if (!profileButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-    dropdownMenu.style.display = 'none';
-  }
-});
+document.getElementById("placeBtn").addEventListener("click", function() {
+  location.href = "/travel/tour"
+})
+

@@ -41,6 +41,13 @@ public class CommentController {
         return commentService.listCommentPost(dto.getPostingId());
     }
 
+    @GetMapping("/list/{postId}")
+    public List<CommentDto> readList(
+            @PathVariable("postId") Long postId
+    ) {
+        return commentService.listCommentPost(postId);
+    }
+
     @GetMapping("{commentId}")
     public CommentDto readOne(@PathVariable("commentId") Long commentId) {
         return commentService.readOne(commentId);

@@ -25,8 +25,7 @@ public class ImagePostingService {
     private final static String[] images = {
             "/static/visual/posting/image1.png",
             "/static/visual/posting/image2.png",
-            "/static/visual/posting/image3.png",
-            "/static/visual/posting/image4.png"
+            "/static/visual/posting/image3.png"
     };
 
     public ImagePostingService(PostRepo postRepo, ImagePostRepo imagePostRepo) {

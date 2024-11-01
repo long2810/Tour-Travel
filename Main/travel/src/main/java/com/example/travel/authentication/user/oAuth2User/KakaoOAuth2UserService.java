@@ -50,6 +50,7 @@ public class KakaoOAuth2UserService extends DefaultOAuth2UserService {
                     .name(name)
                     .email(email)
                     .phone(phone)
+                    .profileImg("/static/visual/user.png")
                     .build();
 
             Authority authorityUser = authorityRepo.findByRole("ROLE_USER").orElseThrow();

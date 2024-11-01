@@ -10,6 +10,10 @@ const noConfirm = document.getElementById("no-confirm");
 
 formBooking.addEventListener("submit", e=>{
     e.preventDefault();
+    if (!localStorage.getItem("token")){
+        location.href = "/travel/login";
+        return;
+    }
     confirmArea.classList.remove("d-none");
     noConfirm.addEventListener("click", e=>{
         e.preventDefault();
@@ -108,7 +112,7 @@ formBooking.addEventListener("submit", e=>{
             body: JSON.stringify(inputData),
         }).then(response=>{
             if (response.ok){
-                location.href = "/travel/your-booking";
+                location.href = "/travel/my-booking";
                 return response.json();
             }
             else {return response.text().then(text=>{alert(text)});}

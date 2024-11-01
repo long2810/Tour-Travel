@@ -39,6 +39,14 @@ body {
 .post {
   margin-top: 100px;
 }
+
+#heart, #down {
+  cursor: pointer;
+}
+
+#comment-list {
+  display : none;
+}
 .post-image {
   width: 70vw;
   height: 700px;

@@ -17,6 +17,10 @@ public class PostingDto {
     private String title;
     private String content;
     private Long writerId;
+    private String writerAvatar;
+    private String writer;
+    private Integer numOfLike;
+    private Integer numOfComment;
     private final List<String> images = new ArrayList<>();
 
     public static PostingDto fromEntity(Posting posting) {
@@ -25,6 +29,10 @@ public class PostingDto {
                 .title(posting.getTitle())
                 .content(posting.getContent())
                 .writerId(posting.getWriter().getId())
+                .writerAvatar(posting.getWriter().getProfileImg())
+                .writer(posting.getWriter().getName())
+                .numOfComment(posting.getNumOfComment())
+                .numOfLike(posting.getNumOfLike())
                 .build();
         for (ImagePosting image: posting.getImages()){
             postingDto.images.add(image.getLink());

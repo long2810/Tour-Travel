@@ -22,7 +22,4 @@ public class LikeController {
     public void delete(@PathVariable("id") Long likeId){
         likeService.delete(likeId);
     }
-
-    @GetMapping("/{postId}")
-    public Long getLikeOfPost(@PathVariable("postId") Long postId) {return likeService.getLikeCountByPostId(postId);};
 }

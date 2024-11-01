@@ -19,6 +19,8 @@ public class Posting extends BaseEntity {
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity writer;
-    @OneToMany(mappedBy = "posting",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "posting")
     private final List<ImagePosting> images  =  new ArrayList<>();
+    private Integer numOfLike;
+    private Integer numOfComment;
 }

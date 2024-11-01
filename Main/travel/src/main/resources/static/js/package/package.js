@@ -1,5 +1,16 @@
 const pathSplit = location.pathname.split("/");
 const packageId = pathSplit[pathSplit.length-1];
+
+const prevPage = document.getElementById("prevPage");
+const nextPage = document.getElementById("nextPage");
+if (packageId==="1") {
+    prevPage.classList.add("text-secondary");
+} else {prevPage.href=`/travel/package/${Number(packageId)-1}`}
+
+if (packageId==="3"){
+    nextPage.classList.add("text-secondary");
+} else {nextPage.href=`/travel/package/${Number(packageId)+1}`}
+
 const averRating = document.getElementById("aver-rating");
 const numOfRating = document.getElementById("numOfRating");
 const prev = document.getElementById("prev");

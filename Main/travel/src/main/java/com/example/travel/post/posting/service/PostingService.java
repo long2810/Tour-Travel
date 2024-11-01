@@ -26,19 +26,11 @@ public class PostingService {
     //create
     public PostingDto create(PostingDto dto) {
         UserEntity writer = userComponent.userLogin();
-        ImagePosting image1 = imageRepo.findById(1L).orElseThrow();
-        ImagePosting image2 = imageRepo.findById(2L).orElseThrow();
-        ImagePosting image3 = imageRepo.findById(3L).orElseThrow();
-        ImagePosting image4 = imageRepo.findById(4L).orElseThrow();
         Posting posting = Posting.builder()
                 .title(dto.getTitle())
                 .writer(writer)
                 .content(dto.getContent())
                 .build();
-        posting.getImages().add(image1);
-        posting.getImages().add(image2);
-        posting.getImages().add(image3);
-        posting.getImages().add(image4);
         return PostingDto.fromEntity(postRepo.save(posting));
     }
 
@@ -65,4 +57,13 @@ public class PostingService {
         postRepo.delete(posting);
     }
 
+    public List<PostingDto> allPostingByWriter(){
+        UserEntity writer = userComponent.userLogin();
+        List<PostingDto> dtoList = new ArrayList<>();
+        for (Posting posting: postRepo.searchPostingsByWriter(writer)){
+            dtoList.add(PostingDto.fromEntity(posting));
+            log.info(posting.getImages().toString());
+        }
+        return dtoList;
+    }
 }

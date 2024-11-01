@@ -22,6 +22,7 @@ public class BookToursDto {
     private Integer coupon;
     private String packageTitle;
     private Integer rating;
+    private Long customerId;
 
     public static BookToursDto dto (BookTours entity){
         BookToursDto bookToursDto = BookToursDto.builder()
@@ -36,6 +37,7 @@ public class BookToursDto {
                 .packageTitle(entity.getTourPackage().getTitle())
                 .customerPhone(entity.getCustomer().getPhone())
                 .rating(entity.getRating())
+                .customerId(entity.getCustomer().getId())
                 .build();
         return bookToursDto;
     }

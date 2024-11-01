@@ -21,13 +21,16 @@ fetch("/users", {
             alert(text);
         })
     }
-}).then(json=>{userLogin=json;})
+}).then(json=>{
+    userLogin=json;
+    document.getElementById("img-mes").src=json.profileImg;
+})
 .catch(e=> {alert(e.message())})
 
 
 function confirmMes (mes){
     if (mes.senderId===1 && !mes.confirm){
-        if (mesInput.value!==null){
+        // if (mesInput.value!==null){
             fetch(`/messages/user/confirm/${mes.id}`, {
                 method: "PUT",
                 headers: {
@@ -36,7 +39,7 @@ function confirmMes (mes){
                 }
             }).then(response=>{
                 if (response.ok){
-                    count=0;
+                    countMes.innerText=0;
                     countMes.classList.add("d-none");
                     return response.json();
                 } else{
@@ -45,35 +48,23 @@ function confirmMes (mes){
             }).catch(e=>{
                 alert(e.message);
             })
-        }    
+        // }    
     }
 }
-fetch("/messages/user/chat", {
-    method: "GET",
+
+
+
+fetch("/messages/user/count-mes", {
     headers: {
         "Authorization": `Bearer ${tokenMes}`,
         "Content-type": "Application/json",
     }
 }).then(response=>{
-    if (response.ok){
-        return response.json();
-    } else{
-        return response.text().then(text=>{alert(text)})
-    }
-}).then(json=>{
-    json.forEach(message=>{
-        displayMes(message);
-        editMes(message);
-        confirmMes(message);
-        if (!message.confirm && message.senderId===1){
-            count++;
-        }
-    })
-    if (count===0) countMes.classList.add("d-none");
-    else {
-        countMes.innerText=count;
-        countMes.classList.remove("d-none")
-    }
+    if (response.ok){return response.json()}
+    else {return response.text().then(alert(text))}
+}).then(numOfMes=>{
+    if (numOfMes!==0) countMes.classList.remove("d-none");
+    countMes.innerText=numOfMes;
 })
 
 chatOpen.addEventListener("click", e=>{
@@ -81,6 +72,26 @@ chatOpen.addEventListener("click", e=>{
     chatOpen.classList.add("d-none");
     chatMain.classList.add("d-lg-flex");
     mes.scrollTop = mes.scrollHeight;
+    fetch("/messages/user/chat", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${tokenMes}`,
+            "Content-type": "Application/json",
+        }
+    }).then(response=>{
+        if (response.ok){
+            return response.json();
+        } else{
+            return response.text().then(text=>{alert(text)})
+        }
+    }).then(json=>{
+        mes.innerHTML= ``;
+        json.forEach(message=>{
+            displayMes(message);
+            editMes(message);
+            confirmMes(message);
+        })
+    })
 })
 
 closeChat.addEventListener("click", e=>{

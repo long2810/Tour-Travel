@@ -33,4 +33,10 @@ public class PostingController {
     public void postDelete(
             @PathVariable("id") Long postId
     ) {postingService.delete(postId);}
+
+//    @GetMapping
+    @GetMapping()
+    public List<PostingDto> allPostingByWriter(){
+        return postingService.allPostingByWriter();
+    }
 }

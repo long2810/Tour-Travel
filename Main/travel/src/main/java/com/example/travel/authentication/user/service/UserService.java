@@ -6,6 +6,7 @@ import com.example.travel.authentication.user.entity.Authority;
 import com.example.travel.authentication.user.entity.UserEntity;
 import com.example.travel.authentication.user.repo.AuthorityRepo;
 import com.example.travel.authentication.user.repo.UserRepo;
+import com.example.travel.message.repo.MessageRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +28,7 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder encoder;
     private final AuthorityRepo authorityRepo;
     private final UserComponent userComponent;
+    private final MessageRepo messageRepo;
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
@@ -114,4 +116,6 @@ public class UserService implements UserDetailsService {
         }
         return users;
     }
+
+
 }

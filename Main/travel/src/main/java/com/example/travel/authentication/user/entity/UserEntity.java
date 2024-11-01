@@ -22,6 +22,8 @@ public class UserEntity extends BaseEntity {
     private String email;
     private String phone;
     private String profileImg;
+    private Integer countUserSendMes;
+    private Integer countMesByUser;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private final Set<Authority> authorities = new HashSet<>();

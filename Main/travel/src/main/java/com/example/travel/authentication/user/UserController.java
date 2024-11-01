@@ -2,7 +2,6 @@ package com.example.travel.authentication.user;
 
 import com.example.travel.authentication.component.UserComponent;
 import com.example.travel.authentication.user.dto.UserDto;
-import com.example.travel.authentication.user.service.AfterLoginService;
 import com.example.travel.authentication.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -59,4 +58,6 @@ public class UserController {
     public UserDto user(@PathVariable("userId") Long userId){
         return UserDto.dto(userComponent.userById(userId));
     }
+
+
 }

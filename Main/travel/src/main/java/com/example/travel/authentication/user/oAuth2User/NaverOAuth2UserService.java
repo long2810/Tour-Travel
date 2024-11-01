@@ -49,6 +49,7 @@ public class NaverOAuth2UserService extends DefaultOAuth2UserService {
                     .phone(phone)
                     .name(name)
                     .password(encoder.encode(responseMap.get("id").toString()))
+                    .profileImg("/static/visual/user.png")
                     .build();
 
             Authority authorityUser = authorityRepo.findByRole("ROLE_USER").orElseThrow();

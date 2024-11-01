@@ -14,12 +14,14 @@ import com.example.travel.tourPackage.entity.Package;
 import com.example.travel.tourPackage.entity.Schedule;
 import com.example.travel.tourPackage.repo.PackageRepo;
 import com.example.travel.tourPackage.repo.ScheduleRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
 @Service
+@Slf4j
 public class TestData {
     private final UserRepo userRepo;
     private final PasswordEncoder encoder;
@@ -56,14 +58,13 @@ public class TestData {
         Authority authorityAdmin = authorityRepo.findByRole("ROLE_ADMIN").orElseThrow();
         Authority authorityUser = authorityRepo.findByRole("ROLE_USER").orElseThrow();
 
-
         UserEntity admin = UserEntity.builder()
                 .username("luna010209")
                 .password(encoder.encode("1234"))
                 .name("루나")
                 .email("luna@gmail.com")
                 .phone("010-1234-5654")
-                .profileImg("/static/visual/user.png")
+                .profileImg("/static/1/profile.png")
                 .build();
         admin.getAuthorities().add(authorityAdmin);
         admin.getAuthorities().add(authorityUser);
@@ -169,14 +170,11 @@ public class TestData {
         user10.getAuthorities().add(authorityUser);
         userRepo.save(user10);
     }
+    
     public void fixPost(){
         UserEntity user2 = userRepo.findById(2L).orElseThrow();
         UserEntity user3 = userRepo.findById(3L).orElseThrow();
         UserEntity user4 = userRepo.findById(4L).orElseThrow();
-        ImagePosting image1 = imageRepo.findById(1L).orElseThrow();
-        ImagePosting image2 = imageRepo.findById(2L).orElseThrow();
-        ImagePosting image3 = imageRepo.findById(3L).orElseThrow();
-        ImagePosting image4 = imageRepo.findById(4L).orElseThrow();
         Posting posting21= Posting.builder()
                 .title("8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
                 .content("대표적인 여름휴가지 속초입니다. 8월에 속초 여행을 떠난다면 해수욕장에서의 물놀이를 빼놓을 수 없겠죠. 속초해수욕장 인근에 많은 숙박업소가 마련되어 있어 물놀이 후 깨끗하게\n" +
@@ -193,10 +191,9 @@ public class TestData {
                 .writer(user2)
                 .build();
         postRepo.save(posting21);
-        posting21.getImages().add(image1); posting21.getImages().add(image2); posting21.getImages().add(image3); posting21.getImages().add(image4);
 
         Posting posting22 = Posting.builder()
-                .title("8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
+                .title("서울 여행지 추천 BEST10")
                 .content("맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼\n" +
                         "                    수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.\n" +
                         "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡" +
@@ -213,11 +210,9 @@ public class TestData {
                 .writer(user2)
                 .build();
         postRepo.save(posting22);
-        posting22.getImages().add(image1); posting22.getImages().add(image2);
-        posting22.getImages().add(image3); posting22.getImages().add(image4);
 
         Posting posting31 = Posting.builder()
-                .title("8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
+                .title("10월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
                 .content("맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼\n" +
                         "                    수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.\n" +
                         "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡" +
@@ -234,8 +229,6 @@ public class TestData {
                 .writer(user3)
                 .build();
         postRepo.save(posting31);
-        posting31.getImages().add(image1); posting31.getImages().add(image2);
-        posting31.getImages().add(image3); posting31.getImages().add(image4);
 
         Posting posting32 = Posting.builder()
                 .title("10월 단풍 명소 추천 BEST5 (+코스, 2023ver)")
@@ -252,9 +245,6 @@ public class TestData {
                 .writer(user3)
                 .build();
         postRepo.save(posting32);
-        posting32.getImages().add(image1); posting32.getImages().add(image2);
-        posting32.getImages().add(image3); posting32.getImages().add(image4);
-
 
         Posting posting41 = Posting.builder()
                 .title("서울에서 꼭 가봐야 할 여행지 BEST5 (+코스, 2023ver)")
@@ -281,8 +271,6 @@ public class TestData {
                 .writer(user4)
                 .build();
         postRepo.save(posting41);
-        posting41.getImages().add(image1); posting41.getImages().add(image2);
-        posting41.getImages().add(image3); posting41.getImages().add(image4);
 
         Posting posting42 = Posting.builder()
                 .title("여행 가방 준비 필수 아이템과 팁 (+체크리스트, 2023ver)")
@@ -309,9 +297,6 @@ public class TestData {
                 .writer(user4)
                 .build();
         postRepo.save(posting42);
-        posting42.getImages().add(image1); posting42.getImages().add(image2);
-        posting42.getImages().add(image3); posting42.getImages().add(image4);
-
     }
     public void package1(){
         Package tourPack1 = Package.builder()

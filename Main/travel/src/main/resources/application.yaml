@@ -98,3 +98,10 @@ tour-api:
 
 odsay:
   apiKey: SVx00zK9WLRQiToxGqxTPiktotPUm/k+mg+jXt7oUAc
+
+payment:
+  toss:
+    test_client_api_key: test_ck_DnyRpQWGrN2OJ5m2WJXlrKwv1M9E
+    test_secret_api_key: test_sk_oEjb0gm23PYnJPpZ5MZ6VpGwBJn5
+    success_url: http://127.0.0.1:8080/api/v1/payments/toss/success
+    fail_url: http://127.0.0.1:8080/api/v1/payments/toss/fail

@@ -1,4 +1,8 @@
 const token = localStorage.getItem("token");
+if (!token){
+    location.href="/travel/login";
+}
+
 const allBooking = document.getElementById("allBooking");
 
 function display(booking){
@@ -39,7 +43,7 @@ function display(booking){
     const ratingBook = document.getElementById(`rating${booking.id}`);
     const statusBook = document.getElementById(`status${booking.id}`);
     if (booking.status==="Booking_successful"){
-        paymentBook.innerHTML= `<button id="payButton${booking.id}" class="btn btn-outline-primary">결제</button>`;
+        paymentBook.innerHTML= `<a href="/travel/payment/${booking.id}" type="button" class="btn btn-outline-primary">결제</a>`;
         cancelBook.innerHTML= `<button id="cancelButton${booking.id}" class="btn btn-outline-danger">취소</button>`;
         ratingBook.innerHTML= `<span class="text-bg-secondary">불가</span>`;
         statusBook.innerHTML=`<span class="text-bg-info">예약 성공</span>`;
@@ -112,37 +116,10 @@ function totalBooking(){
 }
 
 function editBooking(booking){
-    const payButton= document.getElementById(`payButton${booking.id}`)
+    
     const cancelButton = document.getElementById(`cancelButton${booking.id}`);
     // const ratingButton = document.getElementById(`ratingButton${booking.id}`);
-    if (payButton){
-        payButton.addEventListener("click", e=>{
-            e.preventDefault();
-            alert(`Thank you for your booking!!! \nWe will contact you soon^^`);
-            fetch(`/booking/${booking.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-type": "Application/json",
-                    "Authorization": `Bearer ${token}`,
-                }
-            }).then(response=>{
-                if (response.ok){
-                    return response.json();
-                }
-                else {return response.text().then(text=>{alert(text)})}
-            }).then(booking=>{
-                document.getElementById(`payment${booking.id}`).innerHTML=
-                `<span class="text-bg-successful">완료</span>`;
-                document.getElementById(`cancel${booking.id}`).innerHTML=
-                `<span class="text-bg-secondary">불가</span>`;
-                document.getElementById(`rating${booking.id}`).innerHTML=
-                `<button id="ratingButton${booking.id}" class="btn btn-outline-warning">평점</button>`;
-                document.getElementById(`status${booking.id}`).innerHTML=
-                `<span class="text-bg-warning">결제 성공</span>`;
-                clickRating();
-            })
-        })
-    }
+    
     
     if (cancelButton){
         cancelButton.addEventListener("click", e=>{

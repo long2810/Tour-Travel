@@ -24,4 +24,12 @@ public class MesAdminController {
     public MessageDto confirm(@PathVariable("messageId") Long messageId){
         return messageService.confirm(messageId);
     }
+    @GetMapping("count-user")
+    public Integer countUserSendMes(){
+        return messageService.countUserSendMes();
+    }
+    @GetMapping("count-mes/{userId}")
+    public Integer countMesByUser(@PathVariable("userId") Long senderId){
+        return messageService.countMesByUser(senderId);
+    }
 }
