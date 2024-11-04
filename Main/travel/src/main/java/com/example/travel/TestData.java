@@ -48,6 +48,7 @@ public class TestData {
         this.scheduleRepo = scheduleRepo;
         this.fixUser();
         this.fixPost();
+        this.fixImage();
         this.package1();
         this.package2();
         this.package3();
@@ -175,6 +176,9 @@ public class TestData {
         UserEntity user2 = userRepo.findById(2L).orElseThrow();
         UserEntity user3 = userRepo.findById(3L).orElseThrow();
         UserEntity user4 = userRepo.findById(4L).orElseThrow();
+
+
+
         Posting posting21= Posting.builder()
                 .title("8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
                 .content("대표적인 여름휴가지 속초입니다. 8월에 속초 여행을 떠난다면 해수욕장에서의 물놀이를 빼놓을 수 없겠죠. 속초해수욕장 인근에 많은 숙박업소가 마련되어 있어 물놀이 후 깨끗하게\n" +
@@ -297,6 +301,7 @@ public class TestData {
                 .writer(user4)
                 .build();
         postRepo.save(posting42);
+
     }
     public void package1(){
         Package tourPack1 = Package.builder()
@@ -562,6 +567,105 @@ public class TestData {
                 .payment(tour3.getPrice()*50/100*20)
                 .build();
         bookToursRepo.save(book7);
+    }
 
+    public void fixImage() {
+        Posting posting21 = postRepo.findById(1L).orElseThrow();
+        Posting posting22 = postRepo.findById(2L).orElseThrow();
+        Posting posting31 = postRepo.findById(3L).orElseThrow();
+        Posting posting32 = postRepo.findById(4L).orElseThrow();
+        Posting posting41 = postRepo.findById(5L).orElseThrow();
+        Posting posting42= postRepo.findById(6L).orElseThrow();
+
+        ImagePosting image1 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting21)
+                .build();
+        imageRepo.save(image1);
+        ImagePosting image2 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting21)
+                .build();
+        imageRepo.save(image2);
+        ImagePosting image3 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting21)
+                .build();
+        imageRepo.save(image3);
+        ImagePosting image4 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting22)
+                .build();
+        imageRepo.save(image4);
+        ImagePosting image5 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting22)
+                .build();
+        imageRepo.save(image5);
+        ImagePosting image6 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting22)
+                .build();
+        imageRepo.save(image6);
+        ImagePosting image7 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting31)
+                .build();
+        imageRepo.save(image7);
+        ImagePosting image8 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting31)
+                .build();
+        imageRepo.save(image8);
+        ImagePosting image9 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting31)
+                .build();
+        imageRepo.save(image9);
+        ImagePosting image10 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting32)
+                .build();
+        imageRepo.save(image10);
+        ImagePosting image11 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting32)
+                .build();
+        imageRepo.save(image11);
+        ImagePosting image12 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting32)
+                .build();
+        imageRepo.save(image12);
+        ImagePosting image13 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting41)
+                .build();
+        imageRepo.save(image13);
+        ImagePosting image14 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting41)
+                .build();
+        imageRepo.save(image14);
+        ImagePosting image15 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting41)
+                .build();
+        imageRepo.save(image15);
+        ImagePosting image16 = ImagePosting.builder()
+                .link("/static/visual/posting/image1.png")
+                .posting(posting42)
+                .build();
+        imageRepo.save(image16);
+        ImagePosting image17 = ImagePosting.builder()
+                .link("/static/visual/posting/image2.png")
+                .posting(posting42)
+                .build();
+        imageRepo.save(image17);
+        ImagePosting image18 = ImagePosting.builder()
+                .link("/static/visual/posting/image3.png")
+                .posting(posting42)
+                .build();
+        imageRepo.save(image18);
     }
 }

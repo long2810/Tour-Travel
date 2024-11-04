@@ -57,6 +57,11 @@ public class CommentController {
     public Long getCountComment(@PathVariable("postId") Long postId) {
         return commentService.commentCountOfPost(postId);
     }
+
+    @GetMapping("{commentId}/writerImg")
+    public String getWriterImg(@PathVariable("commentId") Long commentId) {
+        return commentService.commentWriterImg(commentId);
+    }
 }
 
 

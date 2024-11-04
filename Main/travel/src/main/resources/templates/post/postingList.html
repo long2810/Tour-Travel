@@ -16,6 +16,7 @@
         .blog-header {
             background-image: url("/static/image/bukchon-hanok-2.jpg");
         }
+
         body {
             font-family: "Nanum Myeongjo", serif;
             font-weight: 400;
@@ -31,7 +32,8 @@
 <body>
     <div class="container">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-xl fixed-top d-flex ps-3 pe-3">
+        <nav class="navbar navbar-expand-lg d-flex ps-3 pe-3 shadow-md fixed-top"
+            style="background-color: rgb(253, 249, 251);">
             <div class="container-fluid" id="navbar"></div>
         </nav>
 
@@ -45,38 +47,13 @@
         </div>
 
         <!-- body -->
-        <div class="create-post d-flex mt-2" id = "create-form">
+        <div class="create-post d-flex mt-2" id="create-form">
             <a class="btn btn-success fs-5 create-post-btn ms-auto" href="/travel/post-create">Create Post</a>
         </div>
         <div class="container">
-            <div class="row post w-100 mb-1" id = "post-body">
+            <div class="row post w-100 mb-1" id="post-body">
                 <hr>
-                <div class="col-lg-9 col-sm-12 ">
-                    <div class="d-flex align-items-center">
-                        <div><img src="/static/image/anhthe.jpg"
-                                class="rounded-circle border border-secondary profile-image"> </div>
-                        <a class="navbar-brand  m-3 fs-5" aria-current="page" href="#">찬부렁</a>
-                    </div>
-                    <a class="postTitle text-dark fw-bold text-decoration-none fs-4  " href="#">시티투어 버스 타고, 비 오는 서울
-                        여행</a>
-                    <div class="postContent fs-6 limited-text">시티투어 버스 타고, 비 오는 서울 여행
-                        2024.05.05 ~ 2024.05.06 아기 시골쥐의, 서울 여행 1일차 : 광화문광장 - 시티투어버스 매표소 - N서울남산타워 - 청와대 차이들 안녕인사동점 - 조계사
-                        우리
-                        집 꼬마가 남산타워나 청와대를 궁금해해서 어린이날 연휴에 1박2일 서울 여행을 계획했다. 시티투어버스 타는 걸 제일 기대했는데시티투어 버스 타고, 비 오는 서울 여행
-                        2024.05.05 ~ 2024.05.06 아기 시골쥐의, 서울 여행 1일차 : 광화문광장 - 시티투어버스 매표소 - N서울남산타워 - 청와대 차이들 안녕인사동점 - 조계사
-                        우리
-                        집 꼬마가 남산타워나 청와대를 궁금해해서 어린이날 연휴에 1박2일 서울 여행을 계획했다. 시티투어버스 타는 걸 제일 기대했는데
-                    </div>
-                    <div class="postState d-flex fs-6 ">
-                        <p class="post-like me-1">공감</p>
-                        <p class="post-likeCount me-2">50 </p>
-                        <p class="post-comment me-1">댓글</p>
-                        <p class="post-commentCount me-2 ">27</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12">
-                    <img src="/static/image/post1.jpg" class="img-fluid img-thumbnail post-image" alt="">
-                </div>
+                <!-- js -->
             </div>
         </div>
     </div>
@@ -84,8 +61,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/navbar.js"></script>
-    <script src = "/static/js/posting/postList.js"></script>
-    <script>
+    <script src="/static/js/posting/postList.js"></script>
+    <!-- <script>
         const profileButton = document.getElementById('profileButton');
         const dropdownMenu = document.getElementById('profile-dropdown-menu');
         profileButton.addEventListener('click', function () {
@@ -101,7 +78,7 @@
                 dropdownMenu.style.display = 'none';
             }
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

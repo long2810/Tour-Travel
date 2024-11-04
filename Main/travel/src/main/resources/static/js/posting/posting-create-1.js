@@ -41,7 +41,7 @@ formPost_1.addEventListener("submit", e => {
         content: post_content.value
     }
 
-    fetch("/posting", {
+    fetch("http://localhost:8080/posting", {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -52,10 +52,7 @@ formPost_1.addEventListener("submit", e => {
         .then(response => {
             if (response.ok) {
                 return response.json();
-            } else {
-                alert(response.text());
-                return response.text().then(text => alert(text));
-            }
+            }  else throw Error(response.statusText);
         })
         .then(json => {
             console.log(json);
@@ -76,9 +73,7 @@ function fetchImage(image) {
             if (response.ok) {
                 return response.json();
             }
-            else {
-                return response.text().then(text => alert(text));
-            }
+            else throw Error(response.statusText);
         })
     } else {
         console.log("Didn't input image file");

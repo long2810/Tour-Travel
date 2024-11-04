@@ -2,6 +2,7 @@ package com.example.travel.post.comment.service;
 
 import com.example.travel.authentication.component.UserComponent;
 import com.example.travel.authentication.user.entity.UserEntity;
+import com.example.travel.authentication.user.repo.UserRepo;
 import com.example.travel.post.comment.dto.CommentDto;
 import com.example.travel.post.comment.entity.Comment;
 import com.example.travel.post.comment.repo.CommentRepo;
@@ -79,5 +80,11 @@ public class CommentService {
 
     public Long commentCountOfPost(Long postId) {
         return commentRepo.countCommentByPostId(postId);
+    }
+
+    public String commentWriterImg(Long commentId) {
+        Comment comment = commentRepo.findById(commentId).orElseThrow();
+        UserEntity writer = comment.getWriter();
+        return writer.getProfileImg();
     }
 }

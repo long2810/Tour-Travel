@@ -10,6 +10,10 @@ body {
   height: 40px;
 }
 
+.comment-writer-image {
+  width: 30px;
+  height: 30px;
+}
 .navbar-menu:hover .navbar-menu-list {
   display: block;
 }
