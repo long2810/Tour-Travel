@@ -34,7 +34,7 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
-    @GetMapping
+    @GetMapping ("/update")
     public List<CommentDto> update(
             @RequestBody CommentDto dto
     ) {
@@ -53,7 +53,7 @@ public class CommentController {
         return commentService.readOne(commentId);
     }
 
-    @GetMapping("{postId}")
+    @GetMapping("post/{postId}")
     public Long getCountComment(@PathVariable("postId") Long postId) {
         return commentService.commentCountOfPost(postId);
     }
