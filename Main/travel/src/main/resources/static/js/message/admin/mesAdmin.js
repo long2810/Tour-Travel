@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 const userAvatar = document.getElementById("user-avatar");
 const userName = document.getElementById("user-name");
+let userLoginMes;
+
 fetch(`/users/${receiverId}`, {
     method: "GET",
     headers:{
@@ -26,6 +28,19 @@ fetch(`/users/${receiverId}`, {
 }).then(user=>{
     userAvatar.src= user.profileImg;
     userName.innerText = user.name;
+})
+
+fetch(`/users`, {
+    method: "GET",
+    headers:{
+        "Content-type": "Application/json",
+        "Authorization": `Bearer ${tokenMes}`
+    }
+}).then(response=>{
+    if (response.ok){return response.json();}
+    else{return response.text().then(text=>{alert(text)})}
+}).then(user=>{
+    userLoginMes = user;
 })
 
 function confirmMes(mes){
@@ -141,19 +156,23 @@ const stompClient = new StompJs.Client({
 stompClient.onConnect = (frame) => {
     stompClient.subscribe("/topic/display-mes", (message) =>{
         const newMes = JSON.parse(message.body);
-        displayMes(newMes);
-        editMes(newMes);
-        mesInput.value = null;
-        mes.scrollTop = mes.scrollHeight;
+        if (newMes.receiverId ===userLoginMes.id || newMes.senderId ===userLoginMes.id){
+            displayMes(newMes);
+            editMes(newMes);
+            mesInput.value = null;
+            mes.scrollTop = mes.scrollHeight;
+        }
     })
 
     stompClient.subscribe("/topic/edit", (message)=>{
         const mesEdit = JSON.parse(message.body);
-        document.getElementById(`mes-content${mesEdit.id}`).innerText = mesEdit.content;
-        const edited = document.getElementById(`edited${mesEdit.id}`);
-        edited.classList.remove("d-none");
-        editMes(mesEdit);
-        mes.scrollTop = mes.scrollHeight;
+        if (mesEdit.receiverId ===userLoginMes.id || mesEdit.senderId ===userLoginMes.id){
+            document.getElementById(`mes-content${mesEdit.id}`).innerText = mesEdit.content;
+            const edited = document.getElementById(`edited${mesEdit.id}`);
+            edited.classList.remove("d-none");
+            editMes(mesEdit);
+            mes.scrollTop = mes.scrollHeight;
+        }
     })
 
     stompClient.subscribe("/topic/remove", (messageId)=>{
@@ -253,5 +272,7 @@ function editMes(message){
         }
     })
 }
+
+
 
 

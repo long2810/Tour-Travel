@@ -6,6 +6,10 @@ import com.example.travel.authentication.user.repo.AuthorityRepo;
 import com.example.travel.authentication.user.repo.UserRepo;
 import com.example.travel.bookTours.entity.BookTours;
 import com.example.travel.bookTours.repo.BookToursRepo;
+import com.example.travel.post.comment.entity.Comment;
+import com.example.travel.post.comment.repo.CommentRepo;
+import com.example.travel.post.emotion.Like;
+import com.example.travel.post.emotion.LikeRepo;
 import com.example.travel.post.posting.entity.ImagePosting;
 import com.example.travel.post.posting.entity.Posting;
 import com.example.travel.post.posting.repo.ImagePostRepo;
@@ -31,12 +35,14 @@ public class TestData {
     private final PackageRepo packageRepo;
     private final BookToursRepo bookToursRepo;
     private final ScheduleRepo scheduleRepo;
+    private final LikeRepo likeRepo;
+    private final CommentRepo commentRepo;
 
     public TestData(
             UserRepo userRepo, PasswordEncoder encoder,
             AuthorityRepo authorityRepo, PostRepo postRepo,
             ImagePostRepo imagePostRepo, PackageRepo packageRepo,
-            BookToursRepo bookToursRepo, ScheduleRepo scheduleRepo
+            BookToursRepo bookToursRepo, ScheduleRepo scheduleRepo, LikeRepo likeRepo, CommentRepo commentRepo
     ) {
         this.userRepo = userRepo;
         this.encoder = encoder;
@@ -46,8 +52,11 @@ public class TestData {
         this.packageRepo = packageRepo;
         this.bookToursRepo = bookToursRepo;
         this.scheduleRepo = scheduleRepo;
+        this.likeRepo = likeRepo;
+        this.commentRepo = commentRepo;
         this.fixUser();
         this.fixPost();
+        this.fixComment();
         this.package1();
         this.package2();
         this.package3();
@@ -61,7 +70,7 @@ public class TestData {
         UserEntity admin = UserEntity.builder()
                 .username("luna010209")
                 .password(encoder.encode("1234"))
-                .name("루나")
+                .name("서울 여행")
                 .email("luna@gmail.com")
                 .phone("010-1234-5654")
                 .profileImg("/static/1/profile.png")
@@ -87,7 +96,7 @@ public class TestData {
                 .name("시안")
                 .email("user3@gmail.com")
                 .phone("010-1234-4321")
-                .profileImg("/static/visual/user.png")
+                .profileImg("/static/3/profile.png")
                 .build();
 
         user3.getAuthorities().add(authorityUser);
@@ -99,7 +108,7 @@ public class TestData {
                 .name("채연")
                 .email("user4@gmail.com")
                 .phone("010-4563-0543")
-                .profileImg("/static/visual/user.png")
+                .profileImg("/static/4/profile.png")
                 .build();
         user4.getAuthorities().add(authorityUser);
         userRepo.save(user4);
@@ -110,7 +119,7 @@ public class TestData {
                 .name("서우")
                 .email("user5@gmail.com")
                 .phone("010-4563-0543")
-                .profileImg("/static/visual/user.png")
+                .profileImg("/static/5/profile.png")
                 .build();
         user5.getAuthorities().add(authorityUser);
         userRepo.save(user5);
@@ -121,7 +130,7 @@ public class TestData {
                 .name("Alex")
                 .email("user6@gmail.com")
                 .phone("010-1235-0987")
-                .profileImg("/static/visual/user.png")
+                .profileImg("/static/6/profile.png")
                 .build();
         user6.getAuthorities().add(authorityUser);
         userRepo.save(user6);
@@ -174,25 +183,27 @@ public class TestData {
         UserEntity user2 = userRepo.findById(2L).orElseThrow();
         UserEntity user3 = userRepo.findById(3L).orElseThrow();
         UserEntity user4 = userRepo.findById(4L).orElseThrow();
+        UserEntity user5 = userRepo.findById(5L).orElseThrow();
+        UserEntity user6 = userRepo.findById(6L).orElseThrow();
         Posting posting21= Posting.builder()
-                .title("8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
-                .content("대표적인 여름휴가지 속초입니다. 8월에 속초 여행을 떠난다면 해수욕장에서의 물놀이를 빼놓을 수 없겠죠. 속초해수욕장 인근에 많은 숙박업소가 마련되어 있어 물놀이 후 깨끗하게\n" +
-                        "                    바닷물을 씻어내기에도 좋습니다. 속초해수욕장 입구에는 대관람차가 있는데요." +
+                .title("시티투어 버스 타고, 비 오는 서울 여행")
+                .content("시티투어 버스 타고, 비 오는 서울 여행 2024.05.05 ~ 2024.05.06 아기 시골쥐의, 서울 여행 1일차 : 광화문광장  " +
+                        "- 시티투어버스 매표소 - N서울남산타워 - 청와대 차이들 안녕인사동점 - 조계사 우리 집 꼬마" +
                         "                    \n" +
                         "                    \n" +
-                        "                    국내 유일 해변에 위치한 대관람차로 설악산의 절경과 속초의 푸른 바다를 한눈에 감상할 수 있어 8월 가볼만한 국내여행지로 추천합니다. 속초 해수욕장에서 차량으로 5분 거리에는\n" +
-                        "                    속초관광수산시장이 있어 먹을 것을 포장해오기에도 좋습니다." +
+                        "국내 유일 해변에 위치한 대관람차로 설악산의 절경과 속초의 푸른 바다를 한눈에 감상할 수 있어 8월 가볼만한 국내여행지로 추천합니다. 속초 해수욕장에서 차량으로 5분 거리에는 " +
+                        "속초관광수산시장이 있어 먹을 것을 포장해오기에도 좋습니다." +
                         "                    \n" +
                         "                    \n" +
-                        "                    시장에서 다시 차량으로 5분 가량에 위치한 영금정은 일출과 일몰 명소로도 유명한데요. 8월의 햇볕을 피해 이른 아침이나 선선한 저녁에 방문하는 것이 좋겠죠. 속초에 위치한 설악\n" +
-                        "                    워터피아는 낮에는 워터피아의 어트랙션을, 밤에는 여러 컨셉의 온천욕을 즐기기에도 좋아 당일치기 여행에도 적합합니다.\n" +
-                        "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡")
+                        "시장에서 다시 차량으로 5분 가량에 위치한 영금정은 일출과 일몰 명소로도 유명한데요. 8월의 햇볕을 피해 이른 아침이나 선선한 저녁에 방문하는 것이 좋겠죠. 속초에 위치한 설악 " +
+                        "워터피아는 낮에는 워터피아의 어트랙션을, 밤에는 여러 컨셉의 온천욕을 즐기기에도 좋아 당일치기 여행에도 적합합니다.\n" +
+                        "[출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡")
                 .writer(user2)
                 .build();
         postRepo.save(posting21);
 
         Posting posting22 = Posting.builder()
-                .title("서울 여행지 추천 BEST10")
+                .title("서울에서 꼭 가봐야 할 명소 10곳")
                 .content("맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼\n" +
                         "                    수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.\n" +
                         "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡" +
@@ -206,47 +217,34 @@ public class TestData {
                         "                    모노레일을 타고 들어가는 '환선굴'은 석회암 동굴로 국내 최대 규모의 동굴인데요. 여름에도 얇은 겉옷을 걸쳐입어야하는 시원한 동굴에서 여러 동굴 동물과 동굴류를 탐사해볼 수\n" +
                         "                    있습니다. 어린아이들과 부모님과 함께 가기에도 좋아 8월 가볼만한 삼척 여행지로 추천합니다.\n" +
                         "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡")
-                .writer(user2)
+                .writer(user5)
                 .build();
         postRepo.save(posting22);
 
         Posting posting31 = Posting.builder()
-                .title("10월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)")
-                .content("맑은 바닷물로 최근 '스노클링'의 성지로 떠오른 삼척입니다. 바닷물이 아직은 차가운 7월 초보다 8월에 방문해 스노클링을 즐기는 것이 좋은데요. 맑은 바다에서 물고기와 산호초를 볼\n" +
-                        "                    수 있음은 물론 천혜의 자연환경이 펼쳐지는 삼척으로 8월 국내여행을 떠나보는 것은 어떠신가요.\n" +
-                        "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡" +
-                        "                    \n" +
-                        "                    \n" +
-                        "                    무건리 이끼폭포는 가는 길이 험해 거동이 불편한 분들은 방문이 어려우나 왕복 약 3시간이 의 험한 길을 지나 마주한 이끼폭포는 한 폭의 그림을 연상케합니다. 미인폭포는 길 정비가\n" +
-                        "                    잘 되어있어 거동이 불편하신 분들이라도 등산스틱을 지참하면 무리없는데요. 옥색의 물빛을 자랑하고 있어 이국적인 분위기까지 내뿜습니다.\n" +
-                        "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡" +
-                        "                    \n" +
-                        "                    \n" +
-                        "                    모노레일을 타고 들어가는 '환선굴'은 석회암 동굴로 국내 최대 규모의 동굴인데요. 여름에도 얇은 겉옷을 걸쳐입어야하는 시원한 동굴에서 여러 동굴 동물과 동굴류를 탐사해볼 수\n" +
-                        "                    있습니다. 어린아이들과 부모님과 함께 가기에도 좋아 8월 가볼만한 삼척 여행지로 추천합니다.\n" +
-                        "                    [출처] 8월 가볼만한 국내 여행지 추천 BEST6 (+코스, 2023ver)|작성자 여행톡톡")
+                .title("서울의 숨겨진 보석 같은 장소들")
+                .content("서울에는 잘 알려지지 않은 숨겨진 명소들이 많습니다. "+
+                        "북촌 한옥마을에서 전통 한옥의 아름다움을 감상하고, 익선동의 감성 카페들을 방문해 보세요. "+
+                        "성수동의 힙한 카페와 갤러리도 놓칠 수 없습니다. "+
+                        "이화동 벽화마을은 산책하며 예쁜 벽화를 구경하기 좋은 곳입니다. "+
+                        "마지막으로, 서울숲에서 자연을 만끽하며 여유로운 시간을 보내세요. "+
+                        "다양한 식물과 동물들이 있는 서울숲은 도시의 번잡함을 잠시 잊게 해줄 것입니다.")
                 .writer(user3)
                 .build();
         postRepo.save(posting31);
 
         Posting posting32 = Posting.builder()
-                .title("10월 단풍 명소 추천 BEST5 (+코스, 2023ver)")
-                .content("가을 단풍이 절정인 설악산은 10월에 방문하기 가장 좋은 명소 중 하나입니다. 단풍과 함께 웅장한 산세를 즐길 수 있는 설악산에서 가을의 정취를 느껴보세요.\n" +
-                        "                    [출처] 10월 단풍 명소 추천 BEST5 (+코스, 2023ver)|작성자 여행톡톡" +
-                        "                    \n" +
-                        "                    \n" +
-                        "                    내장산은 단풍 명소로 유명하여 매년 많은 관광객이 찾는 곳입니다. 특히 케이블카를 타고 올라가면 산 전체가 붉게 물든 장관을 감상할 수 있습니다. 등산로도 잘 정비되어 있어 누구나 쉽게 탐방할 수 있습니다.\n" +
-                        "                    [출처] 10월 단풍 명소 추천 BEST5 (+코스, 2023ver)|작성자 여행톡톡" +
-                        "                    \n" +
-                        "                    \n" +
-                        "                    지리산은 넓은 면적에 걸쳐 다양한 단풍 명소가 분포해 있습니다. 반야봉, 천왕봉 등 여러 등산 코스가 있어 다양한 경로로 단풍을 즐길 수 있습니다. 가을 산행을 좋아하는 분들에게 추천합니다.\n" +
-                        "                    [출처] 10월 단풍 명소 추천 BEST5 (+코스, 2023ver)|작성자 여행톡톡")
-                .writer(user3)
+                .title("서울에서 즐기는 최고의 맛집 투어")
+                .content("서울은 맛집 천국입니다. 광장시장에서 다양한 전통 음식을 맛보고, 이태원에서는 세계 각국의 요리를 즐길 수 있습니다. " +
+                        "가로수길과 연남동의 트렌디한 카페와 레스토랑도 추천합니다. 남대문시장의 칼국수 골목과 맛있는 길거리 음식도 놓치지 마세요. " +
+                        "마포구의 유명한 불고기 맛집도 꼭 방문해 보세요. 또한, 한남동의 고급 레스토랑에서 특별한 한 끼를 즐기며 서울의 미식 문화를 체험할 수 있습니다.\n" +
+                        "\n")
+                .writer(user2)
                 .build();
         postRepo.save(posting32);
 
         Posting posting41 = Posting.builder()
-                .title("서울에서 꼭 가봐야 할 여행지 BEST5 (+코스, 2023ver)")
+                .title("서울의 숨겨진 보석 같은 장소들")
                 .content("서울은 역사와 현대가 어우러진 매력적인 도시입니다. 여행자들에게 추천하는 서울의 명소 다섯 곳을 소개합니다.\n" +
                         "                    \n" +
                         "                    첫 번째로 추천하는 곳은 경복궁입니다. 조선시대의 왕궁으로, 고궁의 아름다움과 더불어 한국 전통문화 체험을 즐길 수 있습니다. 10월에는 단풍이 물들어 더욱 아름답습니다.\n" +
@@ -267,7 +265,7 @@ public class TestData {
                         "                    \n" +
                         "                    마지막으로 추천하는 곳은 청계천입니다. 도심 속의 쉼터로, 산책을 하며 여유를 즐길 수 있는 곳입니다. 야경이 아름다워 사진 찍기에도 좋은 장소입니다.\n" +
                         "                    [출처] 서울에서 꼭 가봐야 할 여행지 BEST5 (+코스, 2023ver)|작성자 여행톡톡")
-                .writer(user4)
+                .writer(user6)
                 .build();
         postRepo.save(posting41);
 
@@ -296,6 +294,43 @@ public class TestData {
                 .writer(user4)
                 .build();
         postRepo.save(posting42);
+    }
+    public void fixComment(){
+        UserEntity user5 = userRepo.findById(5L).orElseThrow();
+        UserEntity user6 = userRepo.findById(6L).orElseThrow();
+        UserEntity user7 = userRepo.findById(7L).orElseThrow();
+        UserEntity user8 = userRepo.findById(8L).orElseThrow();
+        UserEntity user9 = userRepo.findById(9L).orElseThrow();
+        UserEntity user10 = userRepo.findById(10L).orElseThrow();
+
+        Posting post1 = postRepo.findById(1L).orElseThrow();
+        Posting post2 = postRepo.findById(2L).orElseThrow();
+        Posting post3 = postRepo.findById(3L).orElseThrow();
+        likeRepo.save(Like.builder().like(true).posting(post1).user(user10).build());
+        likeRepo.save(Like.builder().like(true).posting(post1).user(user9).build());
+        likeRepo.save(Like.builder().like(true).posting(post1).user(user8).build());
+        likeRepo.save(Like.builder().like(true).posting(post1).user(user7).build());
+        likeRepo.save(Like.builder().like(true).posting(post1).user(user6).build());
+        likeRepo.save(Like.builder().like(true).posting(post2).user(user10).build());
+        likeRepo.save(Like.builder().like(true).posting(post3).user(user9).build());
+        likeRepo.save(Like.builder().like(true).posting(post3).user(user8).build());
+        likeRepo.save(Like.builder().like(true).posting(post3).user(user7).build());
+        likeRepo.save(Like.builder().like(true).posting(post2).user(user6).build());
+        commentRepo.save(Comment.builder().writer(user5).posting(post1)
+                .content("Such a great guide for anyone visiting Seoul! I can't wait to check out these spots during my next trip.")
+                .build());
+        commentRepo.save(Comment.builder().writer(user6).posting(post1)
+                .content("I absolutely loved visiting the hidden gems in Seoul, especially the Euljiro area. Highly recommend it!")
+                .build());
+        commentRepo.save(Comment.builder().writer(user8).posting(post1)
+                .content("Seoul really does offer the best of both worlds – history, culture, and modern attractions. This list is spot on!")
+                .build());
+        commentRepo.save(Comment.builder().writer(user8).posting(post2)
+                .content("The food in Seoul is unbeatable! Loved the recommendation for Gwangjang Market. Can't wait to go back and try more!")
+                .build());
+        commentRepo.save(Comment.builder().writer(user10).posting(post2)
+                .content("Thanks for the great suggestions! I’m planning a trip to Seoul soon, and this list will definitely help me plan my itinerary.")
+                .build());
     }
     public void package1(){
         Package tourPack1 = Package.builder()
@@ -476,9 +511,9 @@ public class TestData {
         tourPack3.getSchedules().add(tour3SecondDay);
     }
     public void fixBooking(){
-        UserEntity user5 = userRepo.findById(5L).orElseThrow();
-        UserEntity user6 = userRepo.findById(6L).orElseThrow();
-        UserEntity user7 = userRepo.findById(7L).orElseThrow();
+        UserEntity user2 = userRepo.findById(2L).orElseThrow();
+        UserEntity user3 = userRepo.findById(3L).orElseThrow();
+        UserEntity user4 = userRepo.findById(4L).orElseThrow();
 
         Package tour1 = packageRepo.findById(1L).orElseThrow();
         Package tour2 = packageRepo.findById(2L).orElseThrow();
@@ -487,7 +522,7 @@ public class TestData {
         BookTours book1 = BookTours.builder()
                 .tourPackage(tour1)
                 .numOfPeople(3)
-                .customer(user5)
+                .customer(user2)
                 .departureDay(LocalDate.of(2024, 10,30))
                 .status(BookTours.Status.Booking_successful)
                 .coupon(BookTours.Coupon.ZERO)
@@ -498,7 +533,7 @@ public class TestData {
         BookTours book2 = BookTours.builder()
                 .tourPackage(tour1)
                 .numOfPeople(6)
-                .customer(user6)
+                .customer(user3)
                 .departureDay(LocalDate.of(2024, 11,28))
                 .status(BookTours.Status.Cancel_booking)
                 .coupon(BookTours.Coupon.TWENTY)
@@ -509,9 +544,9 @@ public class TestData {
         BookTours book3 = BookTours.builder()
                 .tourPackage(tour2)
                 .numOfPeople(10)
-                .customer(user5)
+                .customer(user2)
                 .departureDay(LocalDate.of(2024, 12,9))
-                .status(BookTours.Status.Payment_successful)
+                .status(BookTours.Status.Confirmed)
                 .rating(4)
                 .coupon(BookTours.Coupon.THIRTY)
                 .payment(tour2.getPrice()*70/100*10)
@@ -521,7 +556,7 @@ public class TestData {
         BookTours book4 = BookTours.builder()
                 .tourPackage(tour3)
                 .numOfPeople(2)
-                .customer(user6)
+                .customer(user2)
                 .departureDay(LocalDate.of(2024, 12,9))
                 .status(BookTours.Status.Cancel_booking)
                 .coupon(BookTours.Coupon.ZERO)
@@ -532,7 +567,7 @@ public class TestData {
         BookTours book5 = BookTours.builder()
                 .tourPackage(tour1)
                 .numOfPeople(2)
-                .customer(user6)
+                .customer(user3)
                 .departureDay(LocalDate.of(2024, 12,11))
                 .status(BookTours.Status.Payment_successful)
                 .coupon(BookTours.Coupon.ZERO)
@@ -542,9 +577,9 @@ public class TestData {
         BookTours book6 = BookTours.builder()
                 .tourPackage(tour2)
                 .numOfPeople(1)
-                .customer(user7)
+                .customer(user4)
                 .departureDay(LocalDate.of(2024, 12,11))
-                .status(BookTours.Status.Payment_successful)
+                .status(BookTours.Status.Confirmed)
                 .rating(5)
                 .coupon(BookTours.Coupon.ZERO)
                 .payment(tour2.getPrice())
@@ -553,7 +588,7 @@ public class TestData {
         BookTours book7 = BookTours.builder()
                 .tourPackage(tour3)
                 .numOfPeople(20)
-                .customer(user7)
+                .customer(user4)
                 .departureDay(LocalDate.of(2024, 12,15))
                 .status(BookTours.Status.Confirmed)
                 .rating(5)

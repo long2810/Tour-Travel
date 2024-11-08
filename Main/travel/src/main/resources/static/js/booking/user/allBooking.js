@@ -55,23 +55,7 @@ function display(booking){
     } else if(booking.status==="Payment_successful"){
         paymentBook.innerHTML=`<span class="text-bg-successful">완료</span>`;
         cancelBook.innerHTML=`<span class="text-bg-secondary">불가</span>`;
-        if (booking.rating===null){
-            ratingBook.innerHTML=`<button id="ratingButton${booking.id}" class="btn btn-outline-warning">평점</button>`;
-        } else{
-            ratingBook.innerHTML=
-            `
-            <span>
-                <i id="1${booking.id}" class="fa-solid fa-star"></i>
-                <i id="2${booking.id}" class="fa-solid fa-star"></i>
-                <i id="3${booking.id}" class="fa-solid fa-star"></i>
-                <i id="4${booking.id}" class="fa-solid fa-star"></i>
-                <i id="5${booking.id}" class="fa-solid fa-star"></i>
-            </span>
-            `;
-            for (let i=1; i<=booking.rating; i++){
-                document.getElementById(`${i}${booking.id}`).classList.add("text-warning");
-            }
-        }
+        ratingBook.innerHTML=`<span class="text-bg-secondary">불가</span>`;
         statusBook.innerHTML = `<span class="text-bg-warning">결제 성공</span>`;
     } else{
         paymentBook.innerHTML=`<span class="text-bg-successful">완료</span>`;

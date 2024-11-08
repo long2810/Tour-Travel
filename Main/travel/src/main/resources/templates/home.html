@@ -14,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <style>
         .profile-image {
             width: 40px;
@@ -23,6 +26,15 @@
         .col-lg-3-5 {
             flex: 0 0 30%;
             max-width: 30%;
+        }
+
+        .fixed-message {
+            position: fixed;
+            bottom: 10px;
+            /* Adjust distance from the bottom */
+            right: -35px;
+            /* Adjust distance from the right */
+            cursor: pointer;
         }
     </style>
 </head>
@@ -42,16 +54,18 @@
     <!-- body -->
     <div class="container mt-5 w-100 ">
         <!-- package -->
-        <div class = "package scroll-block ">
+        <div class="package scroll-block ">
             <!-- package-title -->
             <p class="package-item-title text-center">여행코스</p>
             <p class="package-item-desc text-center fs-1 fs-bold mb-5">서울에서 진행되는 다양한 여행 코스</p>
             <div class="body-package">
                 <div class="row g-3 d-flex justify-content-center">
                     <!-- package item -->
-                    <a href="#" class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 mb-4 text-decoration-none">
+                    <a href="/travel/package/1"
+                        class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 mb-4 text-decoration-none">
                         <div class="package-image">
-                            <img src="/static/visual/home/롯데타워.jpg" class="w-100 rounded img-fluid" style="height: 220px;">
+                            <img src="/static/visual/home/롯데타워.jpg" class="w-100 rounded img-fluid"
+                                style="height: 220px;">
                         </div>
                         <div class="px-1 h-30">
                             <p class="pt-1 text-center fs-4 fw-bold ">
@@ -65,7 +79,7 @@
                                 <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
                             </div>
                             <div class=" mt-1 package-item-avg">
-                                <h5 class="fw-bold text-primary">9.0/10</h5>
+                                <!-- <h5 class="fw-bold text-primary">9.0/10</h5> -->
                             </div>
                             <div class="d-flex align-items-center mt-1 package-itme-price">
                                 <i class="fa-regular fa-credit-card fa-xl"></i>
@@ -74,9 +88,11 @@
                         </div>
                     </a>
 
-                    <a href="#" class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 text-decoration-none">
+                    <a href="/travel/package/2"
+                        class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 text-decoration-none">
                         <div class="package-image">
-                            <img src="/static/visual/home/남산타워.jpg" class="w-100 h-60 rounded img-fluid" style="height: 220px;">
+                            <img src="/static/visual/home/남산타워.jpg" class="w-100 h-60 rounded img-fluid"
+                                style="height: 220px;">
                         </div>
                         <div class="px-1 h-30">
                             <p class="pt-1 text-center fs-4 fw-bold ">
@@ -90,7 +106,7 @@
                                 <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
                             </div>
                             <div class=" mt-1 package-item-avg">
-                                <h5 class="fw-bold text-primary">9.0/10</h5>
+                                <!-- <h5 class="fw-bold text-primary">9.0/10</h5> -->
                             </div>
                             <div class="d-flex align-items-center mt-1 package-itme-price">
                                 <i class="fa-regular fa-credit-card fa-xl"></i>
@@ -98,9 +114,11 @@
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 text-decoration-none">
+                    <a href="/travel/package/3"
+                        class="body-package-item col col-lg-3-5 col-sm-12 package-custom-shadow me-4 text-decoration-none">
                         <div class="package-image">
-                            <img src="/static/visual/home/광화문.jpg" class="w-100 rounded img-fluid" style="height: 220px;">
+                            <img src="/static/visual/home/광화문.jpg" class="w-100 rounded img-fluid"
+                                style="height: 220px;">
                         </div>
                         <div class="px-1 h-30">
                             <p class="pt-1 text-center fs-4 fw-bold ">
@@ -114,7 +132,7 @@
                                 <i class="fa-solid fa-star fa-lg" style="color: #FFD43B;"></i>
                             </div>
                             <div class=" mt-1 package-item-avg">
-                                <h5 class="fw-bold text-primary">9.0/10</h5>
+                                <!-- <h5 class="fw-bold text-primary">4.5/5</h5> -->
                             </div>
                             <div class="d-flex align-items-center mt-1 package-item-price">
                                 <i class="fa-regular fa-credit-card fa-xl"></i>
@@ -138,8 +156,7 @@
             <div class="row post-content g-4 p-2 ">
                 <div class="col-lg-3 post-owner">
                     <div>
-                        <img src="/static/visual/home/anhthe.jpg"
-                            class=" border border-secondary post-owner-image">
+                        <img src="/static/visual/home/anhthe.jpg" class=" border border-secondary post-owner-image">
                     </div>
                 </div>
                 <div class="col-lg-9 post-body">
@@ -155,8 +172,9 @@
                     <div class="fs-3 text-end">- 찬부렁 -</div>
                 </div>
             </div>
-            <div class="w-100 d-flex mt-5">
-                <button type="submit" class=" btn-detail btn btn-primary btn-lg mx-auto">모두 보기</button>
+            <div class="w-100 d-flex mt-5" id="postBtn">
+                <a class=" btn-detail btn btn-primary btn-lg mx-auto text-white text-decoration-none"
+                    href="/travel/post">모두 보기</a>
             </div>
 
         </div>
@@ -204,89 +222,106 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-100 d-flex mt-5 ">
-                    <button type="submit" class=" btn-detail btn btn-primary btn-lg mx-auto">자세히 보기</button>
+                <div class="w-100 d-flex mt-5" id="placeBtn">
+                    <a class=" btn-detail btn btn-primary btn-lg mx-auto text-white text-decoration-none"
+                        href="/travel/tour">자세히 보기</a>
                 </div>
+            </div>
         </div>
     </div>
     <!-- footer -->
     <footer class="footer text-center bg-body-tertiary mt-5">
         <!-- Grid container -->
         <div class=" pt-4">
-          <!-- Section: Social media -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-      
-            <!-- Twitter -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-twitter"></i
-            ></a>
-      
-            <!-- Google -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-google"></i
-            ></a>
-      
-            <!-- Instagram -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-instagram"></i
-            ></a>
-      
-            <!-- Linkedin -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-linkedin"></i
-            ></a>
-            <!-- Github -->
-            <a
-              data-mdb-ripple-init
-              class="btn btn-link btn-floating btn-lg text-body m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-github"></i
-            ></a>
-          </section>
-          <!-- Section: Social media -->
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-linkedin"></i></a>
+                <!-- Github -->
+                <a data-mdb-ripple-init class="btn btn-link btn-floating btn-lg text-body m-1" href="#!" role="button"
+                    data-mdb-ripple-color="dark"><i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
         </div>
         <!-- Grid container -->
-      
+
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        
+
         </div>
         <!-- Copyright -->
-      </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </footer>
+    <!-- message -->
+    <div id="user-bot" class="mb-2 me-2 p-3 container-fluid">
+        <div class="sticky-bottom d-flex justify-content-end pe-5 w-100 fixed-message">
+            <a href="#" class="pb-2" id="chat-open">
+                <div class="position-relative">
+                    <img src="/static/visual/home/mes/mes.png" class="img-fluid" style="height: 70px; width: 70px; border-radius: 50%;">
+                    <span id="count-mes" class="d-none position-absolute d-flex align-items-center justify-content-center
+                     top-0 end-0 border rounded-circle text-bg-danger" style="height: 20px; width: 20px; ">
+                        3
+                    </span>
+                </div>
+            </a>
+            <div id="chat-main" class="d-none">
+                <div class="border bg-light rounded" style="height: 480px; width: 350px;">
+                    <div class="d-flex border-bottom shadow-lg p-2 mb-3">
+                        <div class="col-7 ps-3">
+                            <a href="">
+                                <img id="img-mes" src="/static/visual/user.png" class="img-fluid rounded-circle"
+                                    style="height: 40px; width: 40px;">
+                            </a>
+                        </div>
+                        <div id="close-chat" class="col-5 pe-3 d-flex justify-content-end align-items-center">
+                            <a href="#"><i class="fa-regular fa-rectangle-xmark fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div id="mes" class="ps-2 pe-2 scrollable-bar" style="height: 350px;">
+                    </div>
+                    <div id="newmes-area" class="d-flex shadow-lg p-2">
+                        <form class="input-group w-100" id="mes-form">
+                            <input id="mes-input" type="text" class="form-control fs-6" placeholder="메시지 입력..."
+                                style="height: 40px;">
+                            <button class="rounded" type="submit">보내기</button>
+                        </form>
+                    </div>
+                    <div id="edit-area" class="d-flex shadow-lg p-2 d-none">
+                        <a href="#" id="cancel-edit" style="font-size: small;"
+                            class="border rounded round d-flex text-center align-items-center text-bg-warning text-decoration-none">Cancel
+                            edit</a>
+                        <form class="input-group w-100" id="edit-form">
+                            <input id="edit-input" type="text" class="form-control fs-6" placeholder="메시지 입력..."
+                                style="height: 40px;">
+                            <button class="rounded" type="submit">보내기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="video-system" class="fixed-top">  
+    </div>
     <script src="/static/js/home/home.js"></script>
     <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/message/user/mesUser.js"></script>
+    <script src="/static/js/call.js"></script>
 </body>
 
 </html>

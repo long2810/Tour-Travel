@@ -1,4 +1,7 @@
 const token= localStorage.getItem("token");
+if (!token){
+  location.href=`/travel/login`;
+}
 const pathSplit = location.pathname.split("/");
 const bookId = pathSplit[pathSplit.length-1][0];
 

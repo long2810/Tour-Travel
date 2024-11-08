@@ -10,7 +10,7 @@ let mapY;
 let mapDis;
 
 function disOneTour(result){
-    if (result.firstimage==="") {imageModal.src="/static/visual/tourist/seoulTour.png";}
+    if (result.firstimage==="") {imageModal.src=`/static/visual/tourist/seoul${Math.floor(Math.random() * 10) + 1}.png`;}
     else {imageModal.src=result.firstimage};
 
     tourName.innerText= result.title;

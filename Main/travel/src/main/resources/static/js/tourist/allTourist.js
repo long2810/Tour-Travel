@@ -28,7 +28,7 @@ function cityDisplay(item){
 
 function touristDisplay(tourist){
     let touristImg;
-    if (tourist.firstimage=="") touristImg="/static/visual/tourist/seoul9.png";
+    if (tourist.firstimage=="") touristImg=`/static/visual/tourist/seoul${Math.floor(Math.random() * 10) + 1}.png`;
     else {touristImg=tourist.firstimage;}
     const divTour = document.createElement("div");
     divTour.className= "col-12 col-md-6 p-3";

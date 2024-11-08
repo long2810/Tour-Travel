@@ -68,6 +68,7 @@ editBasicInfo.addEventListener("click", e=>{
             email.value = user.email;
             phone.value = user.phone;
             editProfile.classList.add("d-none");
+            alert("변경 사항이 저장되었습니다^^");
         })
     })
 })

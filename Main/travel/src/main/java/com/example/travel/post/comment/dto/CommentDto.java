@@ -13,6 +13,7 @@ public class CommentDto {
     private String content;
     private String writer;
     private Long writerId;
+    private String writerImg;
     private Long postingId;
 
     public static CommentDto fromEntity(Comment entity) {
@@ -21,6 +22,7 @@ public class CommentDto {
                 .content(entity.getContent())
                 .writer(entity.getWriter().getName())
                 .writerId(entity.getWriter().getId())
+                .writerImg(entity.getWriter().getProfileImg())
                 .postingId(entity.getPosting().getId())
                 .build();
         return dto;

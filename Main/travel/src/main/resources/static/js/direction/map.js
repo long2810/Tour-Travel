@@ -777,15 +777,24 @@ function mapPath(path){
     });
 }
 
-let polylines = new Array();;
+let polylines = new Array();
+let borders = new Array();
 function drawPolyLine(data){
-    if (polylineCar) polylineCar.setMap(null);
+    if (polylineCar) {
+        border1.setMap(null);
+        polylineCar.setMap(null);
+    }
     polylines.forEach(polyline => {
         polyline.setMap(null);
     })
+    borders.forEach(border2=>{
+        border2.setMap(null);
+    })
     polylines = new Array();
+    borders = new Array();
     let lineArray;
     let polyline;
+    let border2;
     for(let i = 0 ; i < data.lane.length; i++){
         for(let j=0 ; j <data.lane[i].section.length; j++){
             lineArray = new Array();
@@ -794,37 +803,64 @@ function drawPolyLine(data){
             }
             
             if (data.lane[i].class === 1){
+                border2 = new kakao.maps.Polyline({
+                    path: lineArray,
+                    strokeColor: '#000000',  // Dark color for border
+                    strokeWeight: 5,  // Slightly larger stroke for border
+                    strokeOpacity: 0.7,  // Semi-transparent border
+                    zIndex: 0  // Behind the main line
+                  });
                 polyline = new kakao.maps.Polyline({
                     path: lineArray,
                     strokeWeight: 3,
-                    strokeOpacity: 2, // The opacity of the polyline
+                    strokeOpacity: 1, // The opacity of the polyline
                     strokeStyle: 'solid',
-                    strokeColor: colorBusMap(data.lane[i])
+                    strokeColor: colorBusMap(data.lane[i]),
+                    zIndex: 1
                 });
                 polyline.setMap(map);
+                border2.setMap(map);
                 
             }
             else if (data.lane[i].class === 2) {
+                border2 = new kakao.maps.Polyline({
+                    path: lineArray,
+                    strokeColor: '#000000',  // Dark color for border
+                    strokeWeight: 5,  // Slightly larger stroke for border
+                    strokeOpacity: 0.7,  // Semi-transparent border
+                    zIndex: 0  // Behind the main line
+                  });
                 polyline = new kakao.maps.Polyline({
                     path: lineArray,
                     strokeWeight: 3,
-                    strokeOpacity: 2, // The opacity of the polyline
+                    strokeOpacity: 1, // The opacity of the polyline
                     strokeStyle: 'solid',
-                    strokeColor: colorSubwayMap(data.lane[i])
+                    strokeColor: colorSubwayMap(data.lane[i]),
+                    zIndex:1
                 });
                 polyline.setMap(map);
-
+                border2.setMap(map);
                 
             } else {
+                border2 = new kakao.maps.Polyline({
+                    path: lineArray,
+                    strokeColor: '#000000',  // Dark color for border
+                    strokeWeight: 5,  // Slightly larger stroke for border
+                    strokeOpacity: 0.7,  // Semi-transparent border
+                    zIndex: 0  // Behind the main line
+                  });
                 polyline = new kakao.maps.Polyline({
                     path: lineArray,
                     strokeWeight: 3,
-                    strokeOpacity: 2, // The opacity of the polyline
+                    strokeOpacity: 1, // The opacity of the polyline
                     strokeStyle: 'solid',
+                    zIndex: 1
                 });
                 polyline.setMap(map);
+                border2.setMap(map);
             }
             polylines.push(polyline);
+            borders.push(border2);
         }
     }
 }
@@ -929,14 +965,23 @@ function nCloudStart(data){
             linePathBound.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
         }
     });
+    // const border6 = new kakao.maps.Polyline({
+    //     path: linePathStart,
+    //     strokeColor: '#000000',  // Dark color for border
+    //     strokeWeight: 5,  // Slightly larger stroke for border
+    //     strokeOpacity: 0.7,  // Semi-transparent border
+    //     zIndex: 0  // Behind the main line
+    //   });
     polylineStart = new kakao.maps.Polyline({
                         path: linePathStart,
-                        strokeWeight: 3,
+                        strokeWeight: 5,
                         strokeColor: '#040720',
-                        strokeOpacity: 2,
-                        strokeStyle: 'dot'
+                        strokeOpacity: 1,
+                        strokeStyle: 'dot',
+                        zIndex: 1
                       });
                 polylineStart.setMap(map);
+                // border6.setMap(map);
 }
 
 let polylineFinish;
@@ -950,14 +995,23 @@ function nCloudFinish(data){
                 linePathBound.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
             }
         });
+        // const border5 = new kakao.maps.Polyline({
+        //     path: linePathFinish,
+        //     strokeColor: '#000000',  // Dark color for border
+        //     strokeWeight: 5,  // Slightly larger stroke for border
+        //     strokeOpacity: 0.7,  // Semi-transparent border
+        //     zIndex: 0  // Behind the main line
+        //   });
         polylineFinish = new kakao.maps.Polyline({
             path: linePathFinish,
-            strokeWeight: 3,
+            strokeWeight: 5,
             strokeColor: '#040720',
-            strokeOpacity: 2,
-            strokeStyle: 'dot'
+            strokeOpacity: 1,
+            strokeStyle: 'dot',
+            zIndex: 1
         });
         polylineFinish.setMap(map);
+        // border5.setMap(map);
 }
 
 const carTime1 = document.getElementById("car-time1");
@@ -994,28 +1048,45 @@ function paramCar(option){
 }
 
 let polylineCar;
+let border1;
 function nCloudMap(data){
     polylines.forEach(polyline => {
         polyline.setMap(null);
     })
+    borders.forEach(border2=>{
+        border2.setMap(null);
+    })
     polylines = new Array();
+    borders= new Array();
     polylineStart.setMap(null);
     polylineFinish.setMap(null);
-    if(polylineCar) polylineCar.setMap(null);
+    if(polylineCar) {
+        border1.setMap(null);
+        polylineCar.setMap(null);
+    }
     const linePath = new Array();
     data.path.forEach((coordinate, index) => {
     if (index % 2 === 0) {
         linePath.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
         }
     });
+    border1 = new kakao.maps.Polyline({
+        path: linePath,
+        strokeColor: '#000000',  // Dark color for border
+        strokeWeight: 5,  // Slightly larger stroke for border
+        strokeOpacity: 0.7,  // Semi-transparent border
+        zIndex: 0  // Behind the main line
+      });
     polylineCar = new kakao.maps.Polyline({
         path: linePath,
         strokeWeight: 3,
-        strokeColor: '#151B54',
-        strokeOpacity: 2,
-        strokeStyle: 'solid'
+        strokeColor: '#999999',
+        strokeOpacity: 1,
+        strokeStyle: 'solid',
+        zIndex: 1 
     });
     polylineCar.setMap(map);
+    border1.setMap(map);
     bounds.extend(new kakao.maps.LatLng(departure.mapy, departure.mapx));
     bounds.extend(new kakao.maps.LatLng(arrival.mapy, arrival.mapx));
     map.setBounds(bounds);

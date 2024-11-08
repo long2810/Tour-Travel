@@ -12,7 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a29ef204c99faef816c9b07b7073532"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .image{
             height: 250px;
@@ -129,10 +130,10 @@
         <div class="d-flex w-100 justify-content-center flex-wrap">
           <div class="col-10 d-flex fw-bold fs-5" style="background-color: aliceblue;">
             <div class="d-none d-lg-flex col-2 border border-2 border-dark justify-content-center p-2">
-              Day
+              
             </div>
             <div class="col-12 col-lg-10 d-flex border border-2 border-dark justify-content-center p-2">
-              Schedule
+              세부 활동
             </div>
           </div>
           <hr class="w-75">
@@ -158,7 +159,10 @@
       </div>
     </div>
   </div>
+  <div id="video-system" class="fixed-top">  
+  </div>
   <script src="/static/js/package/package.js"></script>
   <script src="/static/js/navbar.js"></script>
+  <script src="/static/js/call.js"></script>
 </body>
 </html>

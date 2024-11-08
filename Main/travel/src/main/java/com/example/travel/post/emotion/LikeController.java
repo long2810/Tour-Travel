@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class LikeController {
     private final LikeService likeService;
-    @PostMapping
-    public LikeDto like(@RequestBody LikeDto dto){
-        return likeService.create(dto);
+    @PostMapping("{postId}")
+    public LikeDto like(@PathVariable("postId") Long postId){
+        return likeService.create(postId);
     }
 
-    @GetMapping
-    public boolean checkLike(@RequestBody LikeDto dto){
-        return likeService.existLike(dto);
+    @GetMapping("{postId}")
+    public boolean checkLike(@PathVariable("postId") Long postId){
+        return likeService.existLike(postId);
     }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") Long likeId){
-        likeService.delete(likeId);
+    @DeleteMapping("{postId}")
+    public void delete(@PathVariable("postId") Long postId){
+        likeService.delete(postId);
     }
 }

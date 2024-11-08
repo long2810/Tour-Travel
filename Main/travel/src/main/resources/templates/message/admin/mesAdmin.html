@@ -11,9 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    
     <style>
         .scrollable-bar {
-            height: 300px; /*Set the height of the container*/
+            height: 350px; /*Set the height of the container*/
             overflow-y: scroll; /* Enable vertical scrolling */
             /* border: 1px solid #ddd; */
         }
@@ -48,6 +49,7 @@
                         챗봇
                     </div>
                     <div class="d-none d-lg-flex col-3 justify-content-end align-items-center border rounded p-2">
+                        <a href="#" id="start-call" class="ps-2 pe-2"><i class="fa-solid fa-video"></i></a>
                         <a href="/admin/message" id="xmark" class="ps-2 pe-2"><i class="fa-solid fa-xmark"></i></a>
                     </div>
                 </div>
@@ -81,8 +83,11 @@
         </div>
     </div>
 </div>
+<div id="video-system" class="fixed-top">  
+</div> 
 <script src="/static/js/message/admin/listUser.js"></script>
 <script src="/static/js/message/admin/mesAdmin.js"></script>
+<script src="/static/js/message/admin/callAdmin.js"></script>
 <script src="/static/js/navbar.js"></script>
 </body>
 </html>

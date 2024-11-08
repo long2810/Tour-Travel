@@ -53,13 +53,19 @@ spring:
 
   web:
     resources:
-      static-locations: classpath:/static,file:profile/, posting-media/
+      static-locations: classpath:/static,file:profile/,file:posting-media/
 
   datasource:
     url: jdbc:sqlite:db.sqlite
     driver-class-name: org.sqlite.JDBC
     username: sa
     password: password
+    hikari:
+      connection-timeout: 30000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
   jpa:
     hibernate:
       ddl-auto: create

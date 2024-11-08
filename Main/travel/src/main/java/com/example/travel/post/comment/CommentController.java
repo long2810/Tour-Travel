@@ -34,11 +34,11 @@ public class CommentController {
         commentService.delete(commentId);
     }
 
-    @GetMapping
-    public List<CommentDto> update(
-            @RequestBody CommentDto dto
+    @GetMapping("list/{postId}")
+    public List<CommentDto> list(
+            @PathVariable("postId") Long postId
     ) {
-        return commentService.listCommentPost(dto.getPostingId());
+        return commentService.listCommentPost(postId);
     }
 
     @GetMapping("{commentId}")

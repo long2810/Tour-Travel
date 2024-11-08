@@ -34,13 +34,15 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth->{
-                    auth.requestMatchers("/static/**","/view",
-                            "/token/**", "/lu/**", "/gs-guide-websocket").permitAll();
-                    auth.requestMatchers(HttpMethod.POST,
-                            "/users").permitAll();
-                    auth.requestMatchers("/users", "/messages", "/booking/**").hasRole("USER");
-
-//                    auth.anyRequest().hasRole("USER");
+                    auth.requestMatchers(HttpMethod.POST, "/users")
+                            .permitAll();
+                    auth.requestMatchers("/comments/list/**").permitAll();
+                    auth.requestMatchers("/manage-booking/**", "/call/miss-call/admin/**",
+                        "/messages/admin/**")
+                            .hasRole("ADMIN");
+                    auth.requestMatchers("/users/**", "/messages/**", "/booking/**", "/call/**",
+                            "/messages/user/**", "/comments/**", "/like/**","/posting/**")
+                            .hasRole("USER");
                     auth.anyRequest().permitAll();
                 })
                 .addFilterBefore(

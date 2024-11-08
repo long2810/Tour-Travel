@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .navbar-menu:hover .navbar-menu-list {
             display: block;
@@ -39,7 +41,7 @@
                       <option value="2">코스2</option>
                       <option value="3">코스3</option>
                   </select>
-                  <button type="submit" class="btn btn-outline-primary">Search</button>
+                  <button type="submit" class="btn btn-outline-primary">검색</button>
                 </form>
             </div>
             <div class="w-100">
@@ -52,7 +54,7 @@
                       <option value="Payment_successful">결제 성공</option>
                       <option value="Confirmed">완료</option>
                   </select>
-                  <button type="submit" class="btn btn-outline-primary">Search</button>
+                  <button type="submit" class="btn btn-outline-primary">검색</button>
                 </form>
             </div>
         </div>
@@ -120,7 +122,10 @@
         </div>
       </div>
 </div>
+<div id="video-system" class="fixed-top">  
+</div> 
 <script src="/static/js/booking/user/allBooking.js"></script>
 <script src="/static/js/navbar.js"></script>
+<script src="/static/js/call.js"></script>
 </body>
 </html>

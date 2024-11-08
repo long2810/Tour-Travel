@@ -34,7 +34,7 @@ public class PostingController {
     ) {postingService.delete(postId);}
 
 //    @GetMapping
-    @GetMapping()
+    @GetMapping
     public List<PostingDto> allPostingByWriter(){
         return postingService.allPostingByWriter();
     }

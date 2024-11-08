@@ -12,7 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=8a29ef204c99faef816c9b07b7073532"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
         .image{
             height: 250px;
@@ -34,6 +35,9 @@
       .scroll-oneTour::-webkit-scrollbar-thumb:hover {
           background: #555; /* Color of the scrollbar thumb on hover */
       }
+      .navbar-menu:hover .navbar-menu-list {
+            display: block;
+        }
 </style>
 </head>
 
@@ -61,7 +65,7 @@
                       <select class="form-select" id="city" aria-label="Example select with button addon">
                           <option id="code" value="" selected>전체</option>
                       </select>
-                      <button type="submit" class="btn btn-outline-primary">Search</button>
+                      <button type="submit" class="btn btn-outline-primary">검색</button>
                     </form>
                 </div>
             </div>
@@ -126,9 +130,12 @@
         </div>
       </div>
     </div>
+    <div id="video-system" class="fixed-top">  
+    </div> 
     <script src="/static/js/tourist/oneTourist.js"></script>
     <script src="/static/js/tourist/allTourist.js"></script>
     <script src="/static/js/navbar.js"></script>
+    <script src="/static/js/call.js"></script>
 </body>
 
 </html>

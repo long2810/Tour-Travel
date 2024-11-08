@@ -36,11 +36,11 @@ public class WebViewController {
     }
     @GetMapping("/tour")
     public String tourist(){
-        return "/tourist/allTourist";
+        return "tourist/allTourist";
     }
     @GetMapping("/package/{packageId}")
     public String tourPackage(){
-        return "/tourPackage/package";
+        return "tourPackage/package";
     }
     @GetMapping("booking")
     public String booking(){
@@ -65,4 +65,11 @@ public class WebViewController {
         model.addAttribute("message", request.getParameter("message"));
         return "payment/fail";
     }
+    @GetMapping("post-create")
+    public String postCreate1(Long postId) {return "post/post-create";}
+    @GetMapping("/post/{postId}")
+    public String readOnePost() {return "post/post";}
+    @GetMapping("/post")
+    public String readAllPost() { return "post/postingList";}
+
 }

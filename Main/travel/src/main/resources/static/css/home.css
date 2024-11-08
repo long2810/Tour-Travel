@@ -34,14 +34,6 @@ body {
   display: block;
 }
 
-#profile-dropdown-menu {
-  /* display: block; */
-  position: absolute;
-  top: 50px;
-  left: -80px;
-  width: 150px;
-  /* height: 170px; */
-}
 
 .navbar-menu-list {
   width: 200px;

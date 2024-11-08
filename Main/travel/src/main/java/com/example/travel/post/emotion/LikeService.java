@@ -12,8 +12,8 @@ public class LikeService {
     private final LikeRepo likeRepo;
     private final PostRepo postRepo;
     private final UserComponent userComponent;
-    public LikeDto create(LikeDto dto){
-        Posting posting = postRepo.findById(dto.getPostingId())
+    public LikeDto create(Long postId){
+        Posting posting = postRepo.findById(postId)
                 .orElseThrow(()-> new IllegalArgumentException("No exist posting"));
         Like like = Like.builder()
                 .like(true)
@@ -32,12 +32,17 @@ public class LikeService {
 //        return LikeDto.dto(like);
 //    }
 
-    public boolean existLike(LikeDto dto){
-        Posting posting = postRepo.findById(dto.getPostingId())
+    public boolean existLike(Long postId){
+        Posting posting = postRepo.findById(postId)
                 .orElseThrow(()-> new IllegalArgumentException("No exist posting"));
         return likeRepo.existsByPostingAndUser(posting, userComponent.userLogin());
     }
-    public void delete(Long likeId){
-        likeRepo.deleteById(likeId);
+    public void delete(Long postId){
+        Posting posting = postRepo.findById(postId)
+                .orElseThrow(()-> new IllegalArgumentException("No exist posting"));
+        Like like= likeRepo.findByPostingAndUser(posting, userComponent.userLogin()).orElseThrow(
+                ()-> new IllegalArgumentException("No emotion!!!")
+        );
+        likeRepo.delete(like);
     }
 }

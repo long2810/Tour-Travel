@@ -1,6 +1,17 @@
 const tokenMes = localStorage.getItem("token");
 const chatOpen = document.getElementById("chat-open");
-const chatMain = document.getElementById("chat-main");
+if (!tokenMes){
+    chatOpen.addEventListener("click", e=>{
+        e.preventDefault();
+        alert("로그인 필요합니다!!!");
+        location.href = `/travel/login`;
+    })
+}
+else if (localStorage.getItem("authorities").includes("ROLE_ADMIN")){
+    document.getElementById("user-bot").classList.add("d-none");
+}
+else {
+    const chatMain = document.getElementById("chat-main");
 const closeChat = document.getElementById("close-chat");
 const mes = document.getElementById("mes");
 const countMes = document.getElementById("count-mes");
@@ -163,19 +174,23 @@ const stompClient = new StompJs.Client({
 stompClient.onConnect = (frame) => {
     stompClient.subscribe("/topic/display-mes", (message) =>{
         const newMes = JSON.parse(message.body);
-        displayMes(newMes);
-        editMes(newMes);
-        mesInput.value = null;
-        mes.scrollTop = mes.scrollHeight;
+        if (newMes.receiverId ===userLogin.id || newMes.senderId ===userLogin.id){
+            displayMes(newMes);
+            editMes(newMes);
+            mesInput.value = null;
+            mes.scrollTop = mes.scrollHeight;
+        }
     })
 
     stompClient.subscribe("/topic/edit", (message)=>{
         const mesEdit = JSON.parse(message.body);
-        document.getElementById(`mes-content${mesEdit.id}`).innerText = mesEdit.content;
-        const edited = document.getElementById(`edited${mesEdit.id}`);
-        edited.classList.remove("d-none");
-        editMes(mesEdit);
-        mes.scrollTop = mes.scrollHeight;
+        if (mesEdit.receiverId ===userLogin.id || mesEdit.senderId ===userLogin.id){
+            document.getElementById(`mes-content${mesEdit.id}`).innerText = mesEdit.content;
+            const edited = document.getElementById(`edited${mesEdit.id}`);
+            edited.classList.remove("d-none");
+            editMes(mesEdit);
+            mes.scrollTop = mes.scrollHeight;
+        }
     })
 
     stompClient.subscribe("/topic/remove", (messageId)=>{
@@ -271,3 +286,5 @@ function editMes(message){
 }
 
 
+
+}
